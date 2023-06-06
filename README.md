@@ -8,4 +8,4 @@ b712-summer-camp-client-side-rakibulhaqueonline created by GitHub Classroom
 * PROJECT NAME:
   -  LANGUAGE SCHOOL
 * WORK BY: 
-- React / VITE
+-  REACT and VITE
