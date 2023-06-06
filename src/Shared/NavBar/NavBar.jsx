@@ -1,12 +1,14 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 
 const NavBar = () => {
     return (
-        <div>
-            <Link to='/instructors'>Instructors</Link>
-            <Link>My Classes</Link>
-            <Link>Dashboard</Link>
+        <div className='container flex p-6 mx-auto bg-blue-300 shadow-lg'>
+            <ul className='flex justify-between gap-4 font-bold'>
+                <NavLink to='/instructors'>Instructors</NavLink>
+                <NavLink>My Classes</NavLink>
+                <NavLink>Dashboard</NavLink>
+            </ul>
         </div>
     );
 };
