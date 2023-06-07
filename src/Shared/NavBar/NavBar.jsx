@@ -23,7 +23,7 @@ const NavBar = () => {
                             {navOptions}
                         </ul>
                     </div>
-                    <div className='flex justify-center items-center'>
+                    <div className='flex justify-center items-center ml-12'>
                         <img className='w-24' src={logo} alt="" />
                         <a className="btn text-primary btn-ghost normal-case text-3xl font-extrabold">LangSchool</a>
                     </div>
@@ -33,9 +33,9 @@ const NavBar = () => {
                         {navOptions}
                     </ul>
                 </div>
-                <div className="navbar-end">
+                {/* <div className="navbar-end">
                     <a className="btn">Button</a>
-                </div>
+                </div> */}
             </div>
         </div>
     );

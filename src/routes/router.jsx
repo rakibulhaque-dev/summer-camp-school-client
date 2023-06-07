@@ -8,6 +8,7 @@ import Banner from "../Pages/Banner/Banner";
 import Register from "../Pages/Register/Register";
 import Login from "../Pages/Login/Login";
 import MyClasses from "../Pages/MyClasses/MyClasses";
+import PopulerClasses from "../Pages/PopulerClasses/PopulerClasses";
 
 
 const router = createBrowserRouter([
@@ -30,6 +31,10 @@ const router = createBrowserRouter([
             {
                 path: '/classes',
                 element: <MyClasses></MyClasses>
+            },
+            {
+                path: '/popularclass',
+                element: <PopulerClasses></PopulerClasses>
             }
         ]
     },
