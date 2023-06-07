@@ -1,14 +1,13 @@
 import React from 'react';
 import useAuth from '../hooks/useAuth';
-import { useLocation } from 'react-router-dom';
-import RiseLoader from "react-spinners/RiseLoader"
+import { Navigate, useLocation } from 'react-router-dom';
 
 const PrivateRoute = ({children}) => {
     const { user, loading } = useAuth();
     const location = useLocation();
 
     if(loading){
-        return <RiseLoader color="#36d7b7" />
+        return <>Loading...</>
     }
 
     if (user) {

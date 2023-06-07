@@ -2,10 +2,11 @@ import React from 'react';
 import logo from '../../../src/assets/logo.jpg';
 import { Link, NavLink } from 'react-router-dom';
 import useAuth from '../../hooks/useAuth';
+import { FaUserAlt } from 'react-icons/fa';
 
 const NavBar = () => {
     const { user, logOut } = useAuth();
-
+    console.log(user)
     const handleLogOut = () => {
         logOut()
             .then(() => { })
@@ -17,7 +18,7 @@ const NavBar = () => {
         <li><Link to="/dashboard">Dashboard</Link></li>
         <li>
             {
-                user ? <button onClick={handleLogOut}>LogOut</button> : <li><NavLink to="/login">Login</NavLink></li>
+                !user && <li><NavLink to="/login">Login</NavLink></li>
             }
         </li>
     </>
@@ -44,9 +45,15 @@ const NavBar = () => {
                         {navOptions}
                     </ul>
                 </div>
-                {/* <div className="navbar-end">
-                    <a className="btn">Button</a>
-                </div> */}
+                <div className="navbar-end me-8">
+                    {
+                        user && <div className='flex items-center gap-4'>
+                            {user?.photoURL ? <img src={user?.photoURL} alt="" className='w-12 h-12 rounded-full' /> : <FaUserAlt></FaUserAlt>}
+                            <p>{user?.displayName}</p>
+                            <button onClick={handleLogOut} className='p-2 font-bold rounded-md btn-accent'>LogOut</button>
+                        </div>
+                    }
+                </div>
             </div>
         </div>
     );
