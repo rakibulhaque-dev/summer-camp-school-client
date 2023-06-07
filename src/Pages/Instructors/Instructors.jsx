@@ -9,7 +9,7 @@ const Instructors = () => {
     return (
         <>
             <Helmet>
-                <title>Instructors | Language Academy</title>
+                <title>Instructors | Language School</title>
             </Helmet>
             <h3 className='text-center text-3xl border-primary mb-8 font-bold text-primary p-8 rounded-lg shadow-lg'>We'are all Instructors: {instructors.length}</h3>
             <div className='grid md:grid-cols-3 lg:grid-cols-3 mb-12 gap-4'>
