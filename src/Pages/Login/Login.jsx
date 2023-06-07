@@ -1,7 +1,10 @@
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import useAuth from '../../hooks/useAuth';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import loginBanner from '../../../src/assets/banner/signUpImg.png';
+import SocialLogin from '../../Shared/SocialLogin/SocialLogin';
+
 
 const Login = () => {
     const { signIn, setUser } = useAuth();
@@ -31,29 +34,36 @@ const Login = () => {
             </Helmet>
 
             <div className="min-h-screen hero bg-base-200">
-                <div className="flex-col hero-content lg:flex-row-reverse">
-                    <div className="flex-shrink-0 w-full max-w-sm shadow-2xl card bg-base-100">
+                <div className="flex-col hero-content md:flex-row-reverse">
+                    <div className="text-center md:w-1/2 lg:text-left">
+                        <img className='rounded-lg ' src={loginBanner} alt="" />
+                    </div>
+                    <div className="max-w-sm shadow-2xl card md:w-1/2 bg-base-100">
                         <form onSubmit={handleLogin} className="card-body">
-                            <h2 className='font-bold'>Login Please</h2>
+                            <span className='font-bold text-center text-accent-focus'>Please Login</span>
                             <div className="form-control">
                                 <label className="label">
                                     <span className="label-text">Email</span>
                                 </label>
-                                <input type="text" name='email' placeholder="email" className="input input-bordered" />
+                                <input type="email" name="email" placeholder="email" className="input input-bordered" />
                             </div>
                             <div className="form-control">
                                 <label className="label">
                                     <span className="label-text">Password</span>
                                 </label>
-                                <input type="password" placeholder="password" name='password' className="input input-bordered" />
+                                <input type="password" name="password" placeholder="Password" className="input input-bordered" />
                                 <label className="label">
                                     <a href="#" className="label-text-alt link link-hover">Forgot password?</a>
                                 </label>
                             </div>
                             <div className="mt-6 form-control">
-                                <input disabled={false} className="btn btn-primary" type="submit" value="Login" />
+                                <input className="btn btn-accent" type="submit" value="Login" />
                             </div>
                         </form>
+                        <div className='my-3 text-center'>
+                            <p><small>New Here? <Link to="/reg">Create an account</Link> </small></p>
+                            <SocialLogin></SocialLogin>
+                        </div>
                     </div>
                 </div>
             </div>

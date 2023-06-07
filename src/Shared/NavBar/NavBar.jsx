@@ -1,17 +1,27 @@
 import React from 'react';
 import logo from '../../../src/assets/logo.jpg';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
+import useAuth from '../../hooks/useAuth';
 
 const NavBar = () => {
+    const { user, logOut } = useAuth();
 
+    const handleLogOut = () => {
+        logOut()
+            .then(() => { })
+            .catch(error => console.log(error));
+    }
     const navOptions = <>
         <li><Link to="/instructors">Instructors</Link></li>
         <li><Link to="/classes">Classes</Link></li>
-        <li><Link to="/login">Login</Link></li>
-        <li><Link to="/reg">Register</Link></li>
         <li><Link to="/dashboard">Dashboard</Link></li>
+        <li>
+            {
+                user ? <button onClick={handleLogOut}>LogOut</button> : <li><NavLink to="/login">Login</NavLink></li>
+            }
+        </li>
     </>
-    
+
     return (
         <div className='container mx-auto mb-6 '>
             <div className="border rounded-md shadow-lg navbar bg-base-100 shadow-purple-200">
@@ -30,7 +40,7 @@ const NavBar = () => {
                     </div>
                 </div>
                 <div className="hidden navbar-center lg:flex">
-                    <ul className="flex gap-4 px-1 menu menu-horizontal ">
+                    <ul className="flex items-center justify-center gap-4 px-1 menu menu-horizontal ">
                         {navOptions}
                     </ul>
                 </div>
