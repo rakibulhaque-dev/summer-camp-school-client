@@ -35,7 +35,7 @@ const router = createBrowserRouter([
             {
                 path: '/popularclass',
                 element: <PopulerClasses></PopulerClasses>
-            }
+            },
         ]
     },
     {
