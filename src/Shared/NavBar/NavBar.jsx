@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link, NavLink } from 'react-router-dom';
+import logo from '../../../src/assets/logo.jpg';
 
 const NavBar = () => {
 
@@ -22,11 +23,14 @@ const NavBar = () => {
                             {navOptions}
                         </ul>
                     </div>
-                    <a className="btn text-primary btn-ghost normal-case text-xl font-extrabold">LangSchool</a>
+                    <div className='flex justify-center items-center'>
+                        <img className='w-24' src={logo} alt="" />
+                        <a className="btn text-primary btn-ghost normal-case text-3xl font-extrabold">LangSchool</a>
+                    </div>
                 </div>
                 <div className="navbar-center hidden lg:flex">
                     <ul className="menu menu-horizontal px-1 flex gap-4 ">
-                       {navOptions}
+                        {navOptions}
                     </ul>
                 </div>
                 <div className="navbar-end">
