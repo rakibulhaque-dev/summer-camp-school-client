@@ -23,74 +23,77 @@ import AdminHome from "../Dashboard/AdminPages/AdminHome";
 import AdminRoute from "./AdminRoute";
 import InstructorRoute from "./InstructorRoute";
 import StudentRoute from "./StudentRoute";
+import Layout from "../Layout/Layout";
 
 
 const router = createBrowserRouter([
     {
         path: "/",
-        element: <Home></Home>,
+        element: <Layout></Layout>,
         children: [
-            {
-                path: '/',
-                element: <Banner></Banner>
-            },
-            {
-                path: '/instructors',
-                element: <PrivateRoute><Instructors></Instructors></PrivateRoute>
-            },
-            {
-                path: '/classes',
-                element: <MyClasses></MyClasses>
-            },
-            {
-                path: '/popularclass',
-                element: <PopulerClasses></PopulerClasses>
-            },
-            {
-                path: '/dashboard',
-                element: <PrivateRoute><Dashboard></Dashboard></PrivateRoute>,
-                children: [
-                    {
-                        path: '/dashboard/myclass',
-                        element: <StudentRoute><MySelectedClasses></MySelectedClasses></StudentRoute>
-                    },
-                    {
-                        path: '/dashboard/enrolled',
-                        element: <StudentRoute><MyEnrolledClasses></MyEnrolledClasses></StudentRoute>
-                    },
-                    {
-                        path: '/dashboard/paymenthistory',
-                        element: <StudentRoute><PaymentHistory></PaymentHistory></StudentRoute>
-                    },
-                    // instructors pages
-                    {
-                        path: '/dashboard/addnewclass',
-                        element: <InstructorRoute><AddNewClasses></AddNewClasses></InstructorRoute>
-                    },
-                    {
-                        path: '/dashboard/myallclasses',
-                        element: <InstructorRoute><MyAllClasses></MyAllClasses></InstructorRoute>
-                    },
-                    {
-                        path: '/dashboard/enrolledstudents',
-                        element: <InstructorRoute><EnrolledStudents></EnrolledStudents></InstructorRoute>
-                    },
-                      // admin pages
-                    {
-                        path: '/dashboard/manageusers',
-                        element: <AdminRoute><ManageUsers></ManageUsers></AdminRoute>
-                    },
-                    {
-                        path: '/dashboard/manageclasses',
-                        element: <AdminRoute><ManageClasses></ManageClasses></AdminRoute>
-                    },
-                    {
-                        path: '/dashboard/adminhome',
-                        element: <AdminRoute><AdminHome></AdminHome></AdminRoute>
-                    }
-                ]
-            }
-        ]
+                {
+                    path: '/',
+                    element: <Home></Home>,
+                    children: [
+                        {
+                            path: '/instructors',
+                            element: <PrivateRoute><Instructors></Instructors></PrivateRoute>
+                        },
+                        {
+                            path: '/classes',
+                            element: <MyClasses></MyClasses>
+                        },
+                        {
+                            path: '/popularclass',
+                            element: <PopulerClasses></PopulerClasses>
+                        },
+                        {
+                            path: '/dashboard',
+                            element: <PrivateRoute><Dashboard></Dashboard></PrivateRoute>,
+                            children: [
+                                {
+                                    path: '/dashboard/myclass',
+                                    element: <StudentRoute><MySelectedClasses></MySelectedClasses></StudentRoute>
+                                },
+                                {
+                                    path: '/dashboard/enrolled',
+                                    element: <StudentRoute><MyEnrolledClasses></MyEnrolledClasses></StudentRoute>
+                                },
+                                {
+                                    path: '/dashboard/paymenthistory',
+                                    element: <StudentRoute><PaymentHistory></PaymentHistory></StudentRoute>
+                                },
+                                // instructors pages
+                                {
+                                    path: '/dashboard/addnewclass',
+                                    element: <InstructorRoute><AddNewClasses></AddNewClasses></InstructorRoute>
+                                },
+                                {
+                                    path: '/dashboard/myallclasses',
+                                    element: <InstructorRoute><MyAllClasses></MyAllClasses></InstructorRoute>
+                                },
+                                {
+                                    path: '/dashboard/enrolledstudents',
+                                    element: <InstructorRoute><EnrolledStudents></EnrolledStudents></InstructorRoute>
+                                },
+                                  // admin pages
+                                {
+                                    path: '/dashboard/manageusers',
+                                    element: <AdminRoute><ManageUsers></ManageUsers></AdminRoute>
+                                },
+                                {
+                                    path: '/dashboard/manageclasses',
+                                    element: <AdminRoute><ManageClasses></ManageClasses></AdminRoute>
+                                },
+                                {
+                                    path: '/dashboard/adminhome',
+                                    element: <AdminRoute><AdminHome></AdminHome></AdminRoute>
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
     },
     {
         path: '/login',

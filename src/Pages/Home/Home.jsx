@@ -1,14 +1,16 @@
 import React from 'react';
-import NavBar from '../../Shared/NavBar/NavBar';
 import { Outlet } from 'react-router-dom';
-import Footer from '../../Shared/Footer/Footer';
+import PopulerClasses from '../PopulerClasses/PopulerClasses';
+import Banner from '../Banner/Banner';
+import PopularInstructors from '../PopularInstructors/PopularInstructors';
 
 const Home = () => {
     return (
         <div className='container mx-auto'>
-            <NavBar></NavBar>
             <Outlet></Outlet>
-            <Footer></Footer>
+            <Banner></Banner>
+            <PopulerClasses></PopulerClasses>
+            <PopularInstructors></PopularInstructors>
         </div>
     );
 };
