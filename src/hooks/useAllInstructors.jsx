@@ -1,7 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
 import React from 'react';
 
-const useInstructors = () => {
+const useAllInstructors = () => {
     const { data: instructors = [], isLoading: loading, refetch } = useQuery({
         queryKey: ['instructors'],
         queryFn: async () => {
@@ -13,4 +13,4 @@ const useInstructors = () => {
     return [instructors, loading, refetch]
 };
 
-export default useInstructors;
+export default useAllInstructors;

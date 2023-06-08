@@ -20,6 +20,9 @@ import EnrolledStudents from "../Dashboard/InstructorPages/EnrolledStudents";
 import ManageUsers from "../Dashboard/AdminPages/ManageUsers";
 import ManageClasses from "../Dashboard/AdminPages/ManageClasses";
 import AdminHome from "../Dashboard/AdminPages/AdminHome";
+import AdminRoute from "./AdminRoute";
+import InstructorRoute from "./InstructorRoute";
+import StudentRoute from "./StudentRoute";
 
 
 const router = createBrowserRouter([
@@ -49,39 +52,41 @@ const router = createBrowserRouter([
                 children: [
                     {
                         path: '/dashboard/myclass',
-                        element: <MySelectedClasses></MySelectedClasses>
+                        element: <StudentRoute><MySelectedClasses></MySelectedClasses></StudentRoute>
                     },
                     {
                         path: '/dashboard/enrolled',
-                        element: <MyEnrolledClasses></MyEnrolledClasses>
+                        element: <StudentRoute><MyEnrolledClasses></MyEnrolledClasses></StudentRoute>
                     },
                     {
                         path: '/dashboard/paymenthistory',
-                        element: <PaymentHistory></PaymentHistory>
+                        element: <StudentRoute><PaymentHistory></PaymentHistory></StudentRoute>
                     },
+                    // instructors pages
                     {
                         path: '/dashboard/addnewclass',
-                        element: <AddNewClasses></AddNewClasses>
+                        element: <InstructorRoute><AddNewClasses></AddNewClasses></InstructorRoute>
                     },
                     {
                         path: '/dashboard/myallclasses',
-                        element: <MyAllClasses></MyAllClasses>
+                        element: <InstructorRoute><MyAllClasses></MyAllClasses></InstructorRoute>
                     },
                     {
                         path: '/dashboard/enrolledstudents',
-                        element: <EnrolledStudents></EnrolledStudents>
+                        element: <InstructorRoute><EnrolledStudents></EnrolledStudents></InstructorRoute>
                     },
+                      // admin pages
                     {
                         path: '/dashboard/manageusers',
-                        element: <ManageUsers></ManageUsers>
+                        element: <AdminRoute><ManageUsers></ManageUsers></AdminRoute>
                     },
                     {
                         path: '/dashboard/manageclasses',
-                        element: <ManageClasses></ManageClasses>
+                        element: <AdminRoute><ManageClasses></ManageClasses></AdminRoute>
                     },
                     {
                         path: '/dashboard/adminhome',
-                        element: <AdminHome></AdminHome>
+                        element: <AdminRoute><AdminHome></AdminHome></AdminRoute>
                     }
                 ]
             }
