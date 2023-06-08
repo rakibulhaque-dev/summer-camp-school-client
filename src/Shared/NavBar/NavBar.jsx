@@ -24,7 +24,7 @@ const NavBar = () => {
     </>
 
     return (
-        <div className='container mx-auto mb-6 '>
+        <div className='container mx-auto mb-6'>
             <div className="border rounded-md shadow-lg navbar bg-base-100 shadow-purple-200">
                 <div className="navbar-start">
                     <div className="dropdown">

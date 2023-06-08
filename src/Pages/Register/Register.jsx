@@ -5,6 +5,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import signUpImg from '../../../src/assets/banner/signUpImg.png';
 import useAuth from '../../hooks/useAuth';
 import Swal from 'sweetalert2';
+import SocialLogin from '../../Shared/SocialLogin/SocialLogin';
 
 
 const Register = () => {
@@ -20,7 +21,12 @@ const Register = () => {
 
         updateUserProfile(data.name, data.photoURL)
           .then(() => {
-            const saveUser = { name: data.name, email: data.email }
+            const saveUser = {
+              name: data.name,
+              email: data.email,
+              photoURL: data.photoURL,
+              role: "student",
+            }
             fetch('http://localhost:5000/users', {
               method: 'POST',
               headers: {
@@ -83,13 +89,13 @@ const Register = () => {
               </div>
               <div className="form-control">
                 <label className="label">
-                  <span className="label-text">Password</span>
+                  <span className="label-text">New Password</span>
                 </label>
                 <input type="password" {...register("password", {
                   required: true,
                   minLength: 8,
                   maxLength: 16,
-                  pattern: /(?=.*[A-Z])(?=.*[0-9])(?=.*[a-z])/
+                  pattern: /(?=.*[0-9])(?=.*[a-z])/
                 })} placeholder="password" className="input input-bordered" />
                 {errors.password?.type === 'required' && <p className="text-red-600">Password is required</p>}
                 {errors.password?.type === 'minLength' && <p className="text-red-600">Should be 6 character length!</p>}
@@ -121,6 +127,7 @@ const Register = () => {
             </form>
             <div className='my-6 text-center'>
               <p><small>Already have an account? <Link to="/login" className='text-accent'>Login now</Link></small></p>
+              <SocialLogin></SocialLogin>
             </div>
           </div>
         </div>

@@ -14,12 +14,12 @@ const Dashboard = () => {
         <li><NavLink to='/dashboard/paymenthistory'><FaCoins></FaCoins> Payment History</NavLink></li>
     </>
     const instructorLinks = <>
-        <li><NavLink to='/dashboard/addclass'><FaPenFancy></FaPenFancy> Add a Class</NavLink></li>
-        <li><NavLink to='/dashboard/myallclasses'><FaReadme></FaReadme> My Classes</NavLink></li>
+        <li><NavLink to='/dashboard/addnewclass'><FaPenFancy></FaPenFancy> Add a Class</NavLink></li>
+        <li><NavLink to='/dashboard/myallclasses'><FaReadme></FaReadme> My All Classes</NavLink></li>
         <li><NavLink to='/dashboard/enrolledstudents'><FaUsers></FaUsers> Enrolled Students</NavLink></li>
     </>
     const adminLinks = <>
-        <li><NavLink to='/dashboard/paymenthistory'><FaReadme></FaReadme> Manage Classes</NavLink></li>
+        <li><NavLink to='/dashboard/manageclasses'><FaReadme></FaReadme> Manage Classes</NavLink></li>
         <li><NavLink to='/dashboard/adminhome'><FaHome></FaHome> Admin Home</NavLink></li>
         <li><NavLink to='/dashboard/manageusers'><FaUserPlus></FaUserPlus> Manage Users</NavLink></li>
     </>
@@ -34,7 +34,6 @@ const Dashboard = () => {
                 <label htmlFor="my-drawer-2" className="drawer-overlay"></label>
                 <ul className="h-full p-4 menu w-80 bg-base-200 text-base-content">
                     {/* Sidebar content here */}
-
                     {isInstructor ? instructorLinks : ''}
                     {isAdmin ? adminLinks : ''}
                     {isStudent ? studentsLinks : ''}
