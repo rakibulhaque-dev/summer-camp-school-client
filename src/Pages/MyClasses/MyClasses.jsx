@@ -4,14 +4,14 @@ import ClassCard from '../../components/ClassCard';
 import { Helmet } from 'react-helmet-async';
 
 const MyClasses = () => {
-    const [classes] = useClasses()
+    const [classes, loading, refetch] = useClasses();
     return (
         <>
-        <Helmet>
-            <title>Classes | Language School</title>
-        </Helmet>
-            <p className='text-center text-3xl font-bold text-primary border p-8 shadow-lg rounded'>Whats will you learn from here...</p>
-            <div className='grid md:grid-cols-3 lg:grid-cols-3 gap-4 mt-11'>
+            <Helmet>
+                <title>Classes | Language School</title>
+            </Helmet>
+            <p className='p-8 text-3xl font-bold text-center border rounded shadow-lg text-primary'>Whats will you learn from here...</p>
+            <div className='grid gap-4 md:grid-cols-3 lg:grid-cols-3 mt-11'>
                 {
                     classes.map(singleClass => <ClassCard
                         key={singleClass._id}

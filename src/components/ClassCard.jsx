@@ -6,12 +6,12 @@ const ClassCard = ({ singleClass }) => {
     
     
     
-    const handleSelect = (id) => {
-        console.log(id)
+    const handleSelect = (singleClass) => {
+        console.log(singleClass)
     }
     
     return (
-        <div className='text-center card justify-center items-center border rounded-md shadow-lg gap-4'>
+        <div className='items-center justify-center gap-4 text-center border rounded-md shadow-lg card'>
             <div className='card-body'>
                 <img className='h-auto w-72' src={subjectPic} alt="" />
                 <p className='font-bold text-primary'>Subject Name: <span className='font-extrabold'>{subjectName}</span></p>
@@ -20,8 +20,8 @@ const ClassCard = ({ singleClass }) => {
             <div className='my-4'>
                 <p>Total Students: {totalStudents}</p>
                 <p>Available Seats: {availableSeats}</p>
-                <p className='text-yellow-600 font-bold'>Fee: ${courseFee}</p>
-                <button className='font-bold btn btn-primary btn-sm mt-3 hover:bg-transparent' onClick={()=>handleSelect(_id)}>Select</button>
+                <p className='font-bold text-yellow-600'>Fee: ${courseFee}</p>
+                <button onClick={()=>handleSelect(singleClass)} className='mt-3 font-bold btn btn-primary btn-sm hover:bg-transparent' >Select</button>
             </div>
         </div>
     );
