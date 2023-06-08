@@ -29,7 +29,7 @@ const NavBar = () => {
         </li>
         <li>
             {
-                !user && <li><NavLink to="/login">Login</NavLink></li>
+                !user && <NavLink to="/login">Login</NavLink>
             }
         </li>
     </>
