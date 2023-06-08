@@ -6,11 +6,11 @@ import { useLocation, useNavigate } from 'react-router-dom';
 
 const SocialLogin = () => {
     const { googleSignIn } = useAuth();
+    const location = useLocation();
+    const navigate = useNavigate();
+    const from = location.state?.from?.pathname || '/';
 
     const handleGoogleSignIn = () => {
-        const location = useLocation();
-        const navigate = useNavigate();
-        const from = location.state?.from?.pathname || '/';
 
         googleSignIn()
             .then(result => {

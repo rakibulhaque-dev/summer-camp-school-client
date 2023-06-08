@@ -5,26 +5,25 @@ import { FaTrashAlt } from 'react-icons/fa';
 import Swal from 'sweetalert2';
 
 const ManageUsers = () => {
-    const [users, refetch] = useUsers();
+    const [users, loading, refetch] = useUsers();
 
     const handleMakeAdmin = user => {
-        fetch(`http://localhost:5000/users/admin/${user._id}`,
-        {
+        fetch(`http://localhost:5000/users/admin/${user._id}`, {
             method: 'PATCH'
         })
-        .then(res => res.json())
-        .then(data=>{
-            if(data.modifiedCound){
-                refetch();
-                Swal.fire({
-                    position: 'top-end',
-                    icon: 'success',
-                    title: `${user.name} is now Admin!`,
-                    showConfirmButton: false,
-                    timer: 1500
-                })
-            }
-        })
+            .then(res => res.json())
+            .then(data => {
+                if (data.modifiedCount) {
+                    refetch();
+                    Swal.fire({
+                        position: 'top-end',
+                        icon: 'success',
+                        title: `${user.name} is now Admin!`,
+                        showConfirmButton: false,
+                        timer: 1500
+                    })
+                }
+            })
     }
 
     return (
@@ -55,8 +54,10 @@ const ManageUsers = () => {
                                 <td>{user.role}</td>
                                 <td>
                                     <div className='flex gap-3'>
-                                        <button onClick={()=>handleMakeAdmin(user)} className='font-bold btn-xs hover:btn-warning btn-accent btn'>Make Admin</button>
-                                        <button className='btn-xs hover:btn-primary btn-success btn'>Make Instructor</button>
+                                        {
+                                            user.role === 'student' || user.role === 'instructor' ? <button onClick={() => handleMakeAdmin(user)} className='font-bold btn-xs hover:btn-warning btn-accent btn'>Make Admin</button> : ''
+                                        }
+                                         <button className='btn-xs hover:btn-primary btn-success btn'>Make Instructor</button>
                                     </div>
                                 </td>
                                 <td><button
