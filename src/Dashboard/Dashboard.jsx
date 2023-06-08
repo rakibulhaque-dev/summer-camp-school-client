@@ -1,10 +1,13 @@
 import React from 'react';
 import { NavLink, Outlet } from 'react-router-dom';
-import { FaCoins, FaListUl, FaMobileAlt, FaPenFancy, FaReadme, FaUserPlus, FaUsers } from "react-icons/fa";
+import { FaCoins, FaHome, FaListUl, FaMobileAlt, FaPenFancy, FaReadme, FaUserAltSlash, FaUserPlus, FaUsers } from "react-icons/fa";
 const Dashboard = () => {
 
-    const isInstructor = true;
+    // TODO:  isInstructor isAdmin isStudent will be dynamic
+    const isInstructor = false;
     const isAdmin = true;
+    const isStudent = false;
+
     const studentsLinks = <>
         <li><NavLink to='/dashboard/myclass'><FaListUl></FaListUl> My Selected Classes</NavLink></li>
         <li><NavLink to='/dashboard/enrolled'><FaReadme></FaReadme> My Enrolled Classes</NavLink></li>
@@ -17,6 +20,7 @@ const Dashboard = () => {
     </>
     const adminLinks = <>
         <li><NavLink to='/dashboard/paymenthistory'><FaReadme></FaReadme> Manage Classes</NavLink></li>
+        <li><NavLink to='/dashboard/adminhome'><FaHome></FaHome> Admin Home</NavLink></li>
         <li><NavLink to='/dashboard/manageusers'><FaUserPlus></FaUserPlus> Manage Users</NavLink></li>
     </>
     return (
@@ -31,9 +35,9 @@ const Dashboard = () => {
                 <ul className="h-full p-4 menu w-80 bg-base-200 text-base-content">
                     {/* Sidebar content here */}
 
-                    {isInstructor && instructorLinks}
-                    {isAdmin && adminLinks}
-                    {!isAdmin && !isInstructor && studentsLinks}
+                    {isInstructor ? instructorLinks : ''}
+                    {isAdmin ? adminLinks : ''}
+                    {isStudent ? studentsLinks : ''}
                 </ul>
             </div>
         </div>
