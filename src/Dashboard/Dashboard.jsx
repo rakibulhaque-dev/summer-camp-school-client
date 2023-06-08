@@ -1,12 +1,16 @@
 import React from 'react';
 import { NavLink, Outlet } from 'react-router-dom';
 import { FaCoins, FaHome, FaListUl, FaMobileAlt, FaPenFancy, FaReadme, FaUserAltSlash, FaUserPlus, FaUsers } from "react-icons/fa";
+import useAdmin from '../hooks/useAdmin';
+import useInstructor from '../hooks/useInstructor';
 const Dashboard = () => {
 
-    // TODO:  isInstructor isAdmin isStudent will be dynamic
-    const isInstructor = false;
-    const isAdmin = true;
-    const isStudent = false;
+    // TODO:  isInstructor, isAdmin, isStudent will be dynamic
+    // const isAdmin = true; 
+    const [isAdmin,isAdminLoading] = useAdmin();
+    // const isInstructor = false;
+    const [isInstructor, isInstructorLoading] = useInstructor();
+    // const isStudent = true;
 
     const studentsLinks = <>
         <li><NavLink to='/dashboard/myclass'><FaListUl></FaListUl> My Selected Classes</NavLink></li>
@@ -34,9 +38,9 @@ const Dashboard = () => {
                 <label htmlFor="my-drawer-2" className="drawer-overlay"></label>
                 <ul className="h-full p-4 menu w-80 bg-base-200 text-base-content">
                     {/* Sidebar content here */}
-                    {isInstructor ? instructorLinks : ''}
-                    {isAdmin ? adminLinks : ''}
-                    {isStudent ? studentsLinks : ''}
+                    {isInstructor && instructorLinks}
+                    {isAdmin && adminLinks}
+                    {!isAdmin && !isInstructor && studentsLinks}
                 </ul>
             </div>
         </div>

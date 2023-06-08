@@ -5,6 +5,7 @@ import { FaTrashAlt } from 'react-icons/fa';
 import Swal from 'sweetalert2';
 
 const ManageUsers = () => {
+   
     const [users, loading, refetch] = useUsers();
 
     const handleMakeAdmin = user => {

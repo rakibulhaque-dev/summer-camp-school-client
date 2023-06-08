@@ -22,7 +22,7 @@ const NavBar = () => {
         <li><Link to="/classes">Classes</Link></li>
         <li><Link to="/dashboard">Dashboard</Link></li>
         <li>
-            <Link to="/dashboard/myallclasses">
+            <Link to="/dashboard/myclass">
                 <FaShoppingBag className='text-yellow-700'></FaShoppingBag>
                 <div className="p-2 border rounded-md badge badge-success">+{cartItems?.length || 0}</div>
             </Link>

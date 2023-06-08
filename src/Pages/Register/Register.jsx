@@ -93,14 +93,14 @@ const Register = () => {
                 </label>
                 <input type="password" {...register("password", {
                   required: true,
-                  minLength: 8,
+                  minLength: 6,
                   maxLength: 16,
                   pattern: /(?=.*[0-9])(?=.*[a-z])/
                 })} placeholder="password" className="input input-bordered" />
                 {errors.password?.type === 'required' && <p className="text-red-600">Password is required</p>}
                 {errors.password?.type === 'minLength' && <p className="text-red-600">Should be 6 character length!</p>}
-                {errors.password?.type === 'maxLength' && <p className="text-red-600">Must be less than 20 characters</p>}
-                {errors.password?.type === 'pattern' && <p className="text-red-600">Password must have one uppercase, one lowercase, and one numeric value</p>}
+                {errors.password?.type === 'maxLength' && <p className="text-red-600">Must be less than 16 characters</p>}
+                {errors.password?.type === 'pattern' && <p className="text-red-600">Password must have one lowercase, and one numeric value</p>}
                 <label className="label">
                   <a href="#" className="label-text-alt link link-hover">Forgot password?</a>
                 </label>
