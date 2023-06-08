@@ -3,10 +3,14 @@ import logo from '../../../src/assets/logo.jpg';
 import { Link, NavLink } from 'react-router-dom';
 import useAuth from '../../hooks/useAuth';
 import { FaSave, FaShareAlt, FaShoppingBag, FaUserAlt } from 'react-icons/fa';
+import useCartItems from '../../hooks/useCartItems';
 
 const NavBar = () => {
     const { user, logOut } = useAuth();
-    console.log(user)
+    const [cartItems] = useCartItems();
+
+
+    // console.log(user)
     const handleLogOut = () => {
         logOut()
             .then(() => { })
@@ -20,7 +24,7 @@ const NavBar = () => {
         <li>
             <Link to="/dashboard/myallclasses">
                 <FaShoppingBag className='text-yellow-700'></FaShoppingBag>
-                <div className="p-2 border rounded-md badge badge-success">+0</div>
+                <div className="p-2 border rounded-md badge badge-success">+{cartItems?.length || 0}</div>
             </Link>
         </li>
         <li>
