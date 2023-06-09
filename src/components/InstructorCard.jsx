@@ -1,14 +1,14 @@
 import React from 'react';
 
 const InstructorCard = ({ instructor }) => {
-    console.log(instructor)
+    // console.log(instructor)
     const { photoURL, instructorName, totalClasses, _id, email } = instructor;
     return (
-        <div className='card border items-center mx-auto container justify-center shadow-lg'>
+        <div className='container items-center justify-center mx-auto border shadow-lg card'>
             <div className='card-body '>
-                <img className='h-auto w-96 rounded-lg' src={photoURL} alt="" />
+                <img className='h-auto rounded-lg w-96' src={photoURL} alt="" />
             </div>
-            <div className='text-center my-3'>
+            <div className='my-3 text-center'>
                 <p>Name: {instructorName} </p>
                 <p>Email: {email} </p>
                 <p>Total Classes: {totalClasses} </p>

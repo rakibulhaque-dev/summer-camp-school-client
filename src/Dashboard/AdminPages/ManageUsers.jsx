@@ -5,7 +5,7 @@ import { FaTrashAlt } from 'react-icons/fa';
 import Swal from 'sweetalert2';
 
 const ManageUsers = () => {
-   
+
     const [users, loading, refetch] = useUsers();
 
     const handleMakeAdmin = user => {
@@ -20,6 +20,27 @@ const ManageUsers = () => {
                         position: 'top-end',
                         icon: 'success',
                         title: `${user.name} is now Admin!`,
+                        showConfirmButton: false,
+                        timer: 1500
+                    })
+                }
+            })
+    }
+
+    // handle Make Instructor
+    const handleMakeInstructor = user => {
+        fetch(`http://localhost:5000/users/instructor/${user._id}`, {
+            method: 'PATCH'
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data)
+                if (data.modifiedCount) {
+                    refetch();
+                    Swal.fire({
+                        position: 'top-end',
+                        icon: 'success',
+                        title: `${user.name} is now Instructor!`,
                         showConfirmButton: false,
                         timer: 1500
                     })
@@ -56,9 +77,19 @@ const ManageUsers = () => {
                                 <td>
                                     <div className='flex gap-3'>
                                         {
-                                            user.role === 'student' || user.role === 'instructor' ? <button onClick={() => handleMakeAdmin(user)} className='font-bold btn-xs hover:btn-warning btn-accent btn'>Make Admin</button> : ''
+                                            user.role === 'student' || user.role === 'instructor' ?
+                                             <button
+                                              onClick={() => handleMakeAdmin(user)} 
+                                              className='font-bold btn-xs hover:btn-warning btn-accent btn'>Make Admin</button> : ''
                                         }
-                                         <button className='btn-xs hover:btn-primary btn-success btn'>Make Instructor</button>
+                                    </div>
+                                    <div>
+                                        {
+                                            user.role === 'student' && 
+                                            <button
+                                            onClick={()=>handleMakeInstructor(user)}
+                                            className='btn-xs hover:btn-primary btn-success btn'>Make Instructor</button>
+                                        }
                                     </div>
                                 </td>
                                 <td><button
