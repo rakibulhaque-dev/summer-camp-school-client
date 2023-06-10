@@ -7,7 +7,7 @@ const MySelectedClasses = () => {
     const [cartItems, isLoading, refetch] = useCartItems()
     return (
         <div className='w-full'>
-            <p className='text-3xl text-center'>My Selected Classes Here: {cartItems.length}</p>
+            <p className='p-6 mb-24 text-3xl font-bold text-center border rounded-md shadow-lg text-secondary-focus'>My Selected Classes Here: {cartItems.length}</p>
 
             <Helmet>
                 <title>Selected Classes | Cart | LS</title>

@@ -3,11 +3,15 @@ import { NavLink, Outlet } from 'react-router-dom';
 import { FaCoins, FaHome, FaListUl, FaMobileAlt, FaPenFancy, FaReadme, FaUserAltSlash, FaUserPlus, FaUsers } from "react-icons/fa";
 import useAdmin from '../hooks/useAdmin';
 import useInstructor from '../hooks/useInstructor';
+import { Helmet } from 'react-helmet-async';
+import useAuth from '../hooks/useAuth';
+import NavBar from '../Shared/NavBar/NavBar';
 const Dashboard = () => {
+    const { user } = useAuth()
 
     // TODO:  isInstructor, isAdmin, isStudent will be dynamic
     // const isAdmin = true; 
-    const [isAdmin,isAdminLoading] = useAdmin();
+    const [isAdmin, isAdminLoading] = useAdmin();
     // const isInstructor = false;
     const [isInstructor, isInstructorLoading] = useInstructor();
     // const isStudent = true;
@@ -28,20 +32,29 @@ const Dashboard = () => {
         <li><NavLink to='/dashboard/admin/manageusers'><FaUserPlus></FaUserPlus> Manage Users</NavLink></li>
     </>
     return (
-        <div className="mb-8 drawer lg:drawer-open">
-            <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
-            <div className="flex flex-col items-center justify-center drawer-content">
-                <Outlet></Outlet>
-                <label htmlFor="my-drawer-2" className="btn btn-primary drawer-button lg:hidden">Open drawer</label>
-            </div>
-            <div className="drawer-side">
-                <label htmlFor="my-drawer-2" className="drawer-overlay"></label>
-                <ul className="h-full p-4 menu w-80 bg-base-200 text-base-content">
-                    {/* Sidebar content here */}
-                    {isInstructor && instructorLinks}
-                    {isAdmin && adminLinks}
-                    {!isAdmin && !isInstructor && studentsLinks}
-                </ul>
+        <div className='container mx-auto'>
+            <Helmet>
+                <title>
+                    Dashboard || LS
+                </title>
+            </Helmet>
+
+            <NavBar></NavBar>
+            <div className="mb-8 drawer lg:drawer-open">
+                <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
+                <div className="flex flex-col items-center justify-center drawer-content">
+                    <Outlet></Outlet>
+                    <label htmlFor="my-drawer-2" className="btn btn-primary drawer-button lg:hidden">Open drawer</label>
+                </div>
+                <div className="drawer-side">
+                    <label htmlFor="my-drawer-2" className="drawer-overlay"></label>
+                    <ul className="h-full p-4 menu w-80 bg-base-200 text-base-content">
+                        {/* Sidebar content here */}
+                        {isInstructor && instructorLinks}
+                        {isAdmin && adminLinks}
+                        {!isAdmin && !isInstructor && studentsLinks}
+                    </ul>
+                </div>
             </div>
         </div>
     );

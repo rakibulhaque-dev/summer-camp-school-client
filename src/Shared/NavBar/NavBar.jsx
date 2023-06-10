@@ -2,7 +2,7 @@ import React from 'react';
 import logo from '../../../src/assets/logo.jpg';
 import { Link, NavLink } from 'react-router-dom';
 import useAuth from '../../hooks/useAuth';
-import { FaSave, FaShareAlt, FaShoppingBag, FaUserAlt } from 'react-icons/fa';
+import { FaBookReader, FaHome, FaShoppingBag, FaUserAlt, FaUserShield } from 'react-icons/fa';
 import useCartItems from '../../hooks/useCartItems';
 
 const NavBar = () => {
@@ -17,25 +17,25 @@ const NavBar = () => {
             .catch(error => console.log(error));
     }
     const navOptions = <>
-        <li><Link to="/">Home</Link></li>
-        <li><Link to="/instructors">Instructors</Link></li>
-        <li><Link to="/classes">Classes</Link></li>
-        <li><Link to="/dashboard">Dashboard</Link></li>
+        <li><Link to="/"> <FaHome></FaHome> HOME</Link></li>
+        <li><Link to="/instructors"><FaUserShield></FaUserShield> INSTRUCTORS</Link></li>
+        <li><Link to="/classes"><FaBookReader></FaBookReader> CLASSES</Link></li>
+        <li><Link to="/dashboard"> DASHBOARD</Link></li>
         <li>
             <Link to="/dashboard/myclass">
                 <FaShoppingBag className='text-yellow-700'></FaShoppingBag>
-                <div className="p-2 border rounded-md badge badge-success">+{cartItems?.length || 0}</div>
+                <div className="p-2 border rounded-md badge badge-warning">+{cartItems?.length || 0}</div>
             </Link>
         </li>
         <li>
             {
-                !user && <NavLink to="/login">Login</NavLink>
+                !user && <NavLink to="/login">LOGIN</NavLink>
             }
         </li>
     </>
 
     return (
-        <div className='container mx-auto mb-6'>
+        <div className='container py-4 mx-auto mb-6'>
             <div className="border rounded-md shadow-lg navbar bg-base-100 shadow-purple-200">
                 <div className="navbar-start">
                     <div className="mr-3 dropdown">
@@ -47,12 +47,12 @@ const NavBar = () => {
                         </ul>
                     </div>
                     <div className='flex items-center justify-center '>
-                        <img className='w-16' src={logo} alt="" />
-                        <a className="text-xl font-extrabold normal-case btn text-primary btn-ghost ">LangCamp</a>
+                        <img className='w-16 p-3' src={logo} alt="" />
+                        <a className="text-xl font-extrabold normal-case btn text-primary btn-ghost "></a>
                     </div>
                 </div>
                 <div className="hidden navbar-center lg:flex">
-                    <ul className="flex items-center justify-center gap-4 px-1 menu menu-horizontal ">
+                    <ul className="flex items-center justify-center gap-4 px-1 font-semibold menu menu-horizontal">
                         {navOptions}
                     </ul>
                 </div>
@@ -61,7 +61,10 @@ const NavBar = () => {
                         user && <div className='flex items-center gap-4'>
                             {user?.photoURL ? <img src={user?.photoURL} alt="" className='rounded-full w-9 h-9' /> : <FaUserAlt></FaUserAlt>}
                             <p>{user?.displayName}</p>
-                            <button onClick={handleLogOut} className='flex items-center p-2 font-bold rounded-sm btn-xs btn-accent'>LogOut</button>
+                            <button
+                                onClick={handleLogOut}
+                                className='flex items-center p-2 font-bold rounded-sm btn-xs btn-warning'
+                            >LOG OUT</button>
                         </div>
                     }
                 </div>

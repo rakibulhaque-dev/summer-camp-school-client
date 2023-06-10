@@ -39,7 +39,7 @@ const router = createBrowserRouter([
                 children: [
                     {
                         path: '/instructors',
-                        element: <PrivateRoute><Instructors></Instructors></PrivateRoute>
+                        element: <Instructors></Instructors>
                     },
                     {
                         path: '/classes',
@@ -49,50 +49,7 @@ const router = createBrowserRouter([
                         path: '/popularclass',
                         element: <PopulerClasses></PopulerClasses>
                     },
-                    {
-                        path: '/dashboard',
-                        element: <PrivateRoute><Dashboard></Dashboard></PrivateRoute>,
-                        children: [
-                            {
-                                path: '/dashboard/myclass',
-                                element: <StudentRoute><MySelectedClasses></MySelectedClasses></StudentRoute>
-                            },
-                            {
-                                path: '/dashboard/enrolled',
-                                element:<MyEnrolledClasses></MyEnrolledClasses>
-                            },
-                            {
-                                path: '/dashboard/paymenthistory',
-                                element: <PaymentHistory></PaymentHistory>
-                            },
-                            // instructors pages
-                            {
-                                path: '/dashboard/addnewclass',
-                                element: <InstructorRoute><AddNewClasses></AddNewClasses></InstructorRoute>
-                            },
-                            {
-                                path: '/dashboard/myallclasses',
-                                element:<MyAllClasses></MyAllClasses>
-                            },
-                            {
-                                path: '/dashboard/enrolledstudents',
-                                element: <EnrolledStudents></EnrolledStudents>
-                            },
-                            // admin pages
-                            {
-                                path: '/dashboard/admin/manageusers',
-                                element: <AdminRoute><ManageUsers></ManageUsers></AdminRoute>
-                            },
-                            {
-                                path: '/dashboard/admin/manageclasses',
-                                element: <AdminRoute><ManageClasses></ManageClasses></AdminRoute>
-                            },
-                            {
-                                path: '/dashboard/admin/adminhome',
-                                element: <AdminRoute><AdminHome></AdminHome></AdminRoute>
-                            }
-                        ]
-                    }
+                    
                 ]
             }
         ]
@@ -105,6 +62,50 @@ const router = createBrowserRouter([
         path: '/reg',
         element: <Register></Register>
     },
+    {
+        path: '/dashboard',
+        element: <PrivateRoute><Dashboard></Dashboard></PrivateRoute>,
+        children: [
+            {
+                path: '/dashboard/myclass',
+                element: <MySelectedClasses></MySelectedClasses>
+            },
+            {
+                path: '/dashboard/enrolled',
+                element:<MyEnrolledClasses></MyEnrolledClasses>
+            },
+            {
+                path: '/dashboard/paymenthistory',
+                element: <PaymentHistory></PaymentHistory>
+            },
+            // instructors pages
+            {
+                path: '/dashboard/addnewclass',
+                element: <AddNewClasses></AddNewClasses>
+            },
+            {
+                path: '/dashboard/myallclasses',
+                element:<MyAllClasses></MyAllClasses>
+            },
+            {
+                path: '/dashboard/enrolledstudents',
+                element: <EnrolledStudents></EnrolledStudents>
+            },
+            // admin pages
+            {
+                path: '/dashboard/admin/manageusers',
+                element: <AdminRoute><ManageUsers></ManageUsers></AdminRoute>
+            },
+            {
+                path: '/dashboard/admin/manageclasses',
+                element: <AdminRoute><ManageClasses></ManageClasses></AdminRoute>
+            },
+            {
+                path: '/dashboard/admin/adminhome',
+                element: <AdminRoute><AdminHome></AdminHome></AdminRoute>
+            }
+        ]
+    }
 ]);
 
 export default router;
