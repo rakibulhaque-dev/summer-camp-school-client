@@ -23,12 +23,12 @@ const Dashboard = () => {
         <li><NavLink to='/dashboard/enrolledstudents'><FaUsers></FaUsers> Enrolled Students</NavLink></li>
     </>
     const adminLinks = <>
-        <li><NavLink to='/dashboard/manageclasses'><FaReadme></FaReadme> Manage Classes</NavLink></li>
-        <li><NavLink to='/dashboard/adminhome'><FaHome></FaHome> Admin Home</NavLink></li>
-        <li><NavLink to='/dashboard/manageusers'><FaUserPlus></FaUserPlus> Manage Users</NavLink></li>
+        <li><NavLink to='/dashboard/admin/manageclasses'><FaReadme></FaReadme> Manage Classes</NavLink></li>
+        <li><NavLink to='/dashboard/admin/adminhome'><FaHome></FaHome> Admin Home</NavLink></li>
+        <li><NavLink to='/dashboard/admin/manageusers'><FaUserPlus></FaUserPlus> Manage Users</NavLink></li>
     </>
     return (
-        <div className="drawer lg:drawer-open">
+        <div className="mb-8 drawer lg:drawer-open">
             <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
             <div className="flex flex-col items-center justify-center drawer-content">
                 <Outlet></Outlet>

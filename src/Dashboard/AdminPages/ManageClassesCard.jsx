@@ -1,12 +1,10 @@
 import React from 'react';
 import { FaPrint, FaReadme, FaSearchDollar, FaUserCheck } from 'react-icons/fa';
 import Swal from 'sweetalert2';
-import useClasses from '../../hooks/useClasses';
 
-const ManageClassesCard = ({ item }) => {
+const ManageClassesCard = ({ item, refetch }) => {
     const { courseFee, otherClasses, status, subjectName, subjectPic, totalStudents, instructorName } = item;
 
-    const [classes, loading, refetch] = useClasses()
 
     const handleApprove = (item) => {
         console.log(item)
@@ -14,21 +12,21 @@ const ManageClassesCard = ({ item }) => {
         fetch(`http://localhost:5000/classes/${item._id}`, {
             method: 'PATCH'
         })
-            .then(res => res.json())
-            .then(data => {
-                console.log(data)
+        .then(res => res.json())
+        .then(data => {
+            if (data.modifiedCount) {
                 refetch();
-                if (data.modifiedCount) {
-                    Swal.fire({
-                        position: 'top-end',
-                        icon: 'success',
-                        title: 'Approved succesfully',
-                        showConfirmButton: false,
-                        timer: 1500
-                    })
-                }
-            })
+                Swal.fire({
+                    position: 'top-end',
+                    icon: 'success',
+                    title: `Approved Class!`,
+                    showConfirmButton: false,
+                    timer: 1500
+                })
+            }
+        })
     }
+
 
 
     return (

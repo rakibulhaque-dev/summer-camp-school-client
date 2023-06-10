@@ -59,11 +59,11 @@ const router = createBrowserRouter([
                             },
                             {
                                 path: '/dashboard/enrolled',
-                                element: <StudentRoute><MyEnrolledClasses></MyEnrolledClasses></StudentRoute>
+                                element:<MyEnrolledClasses></MyEnrolledClasses>
                             },
                             {
                                 path: '/dashboard/paymenthistory',
-                                element: <StudentRoute><PaymentHistory></PaymentHistory></StudentRoute>
+                                element: <PaymentHistory></PaymentHistory>
                             },
                             // instructors pages
                             {
@@ -72,23 +72,23 @@ const router = createBrowserRouter([
                             },
                             {
                                 path: '/dashboard/myallclasses',
-                                element: <InstructorRoute><MyAllClasses></MyAllClasses></InstructorRoute>
+                                element:<MyAllClasses></MyAllClasses>
                             },
                             {
                                 path: '/dashboard/enrolledstudents',
-                                element: <InstructorRoute><EnrolledStudents></EnrolledStudents></InstructorRoute>
+                                element: <EnrolledStudents></EnrolledStudents>
                             },
                             // admin pages
                             {
-                                path: '/dashboard/manageusers',
+                                path: '/dashboard/admin/manageusers',
                                 element: <AdminRoute><ManageUsers></ManageUsers></AdminRoute>
                             },
                             {
-                                path: '/dashboard/manageclasses',
+                                path: '/dashboard/admin/manageclasses',
                                 element: <AdminRoute><ManageClasses></ManageClasses></AdminRoute>
                             },
                             {
-                                path: '/dashboard/adminhome',
+                                path: '/dashboard/admin/adminhome',
                                 element: <AdminRoute><AdminHome></AdminHome></AdminRoute>
                             }
                         ]
