@@ -8,7 +8,7 @@ const MySelectedClasses = () => {
     const [cartItems, isLoading, refetch] = useCartItems()
     return (
         <div className='w-full'>
-            <div>
+            <div className='transition-transform duration-500 hover:-translate-y-2'>
                 <p className='p-6 mb-24 text-3xl font-bold border-l-8 border-orange-600 rounded-md shadow-lg carter-font text-amber-800'>
                     My Selected Classes <br /> <span className='flex items-center gap-3 text-sm border-t-2'><FaCartArrowDown></FaCartArrowDown> <span className='text-black'>Total cart items: <span className='text-red-600'>{cartItems.length}</span> item</span></span> </p>
             </div>
@@ -32,7 +32,7 @@ const MySelectedClasses = () => {
                     <tbody>
                         {/* row 1 */}
                         {
-                            cartItems?.map((carts, index) => <tr key={carts._id}>
+                            cartItems?.map((carts, index) => <tr key={carts._id} className='transition-transform duration-500  hover:-translate-y-2'>
                                 <th>{index + 1}</th>
                                 <td>{carts.subjectName}</td>
                                 <td>{carts.instructorName}</td>

@@ -2,7 +2,7 @@ import React from 'react';
 import logo from '../../../src/assets/logo.jpg';
 import { Link, NavLink } from 'react-router-dom';
 import useAuth from '../../hooks/useAuth';
-import { FaBookReader, FaHome, FaShoppingBag, FaSun, FaUserAlt, FaUserShield } from 'react-icons/fa';
+import { FaBookReader, FaDashcube, FaHome, FaShoppingBag, FaSun, FaUserAlt, FaUserShield } from 'react-icons/fa';
 import useCartItems from '../../hooks/useCartItems';
 import '../../../src/index.css'; 
 
@@ -23,7 +23,7 @@ const NavBar = ({ toggleMode, isDarkMode }) => {
         <li><Link to="/"> <FaHome></FaHome> HOME</Link></li>
         <li><NavLink to="/instructors"><FaUserShield></FaUserShield> INSTRUCTORS</NavLink></li>
         <li><Link to="/classes"><FaBookReader></FaBookReader> CLASSES</Link></li>
-        <li><Link to="/dashboard"> DASHBOARD</Link></li>
+        <li><Link to="/dashboard"><FaDashcube></FaDashcube> DASHBOARD</Link></li>
         <li>
             <Link to="/dashboard/myclass">
                 <FaShoppingBag className='text-yellow-700'></FaShoppingBag>
@@ -32,7 +32,7 @@ const NavBar = ({ toggleMode, isDarkMode }) => {
         </li>
         <li>
             {
-                !user && <NavLink to="/login">LOGIN</NavLink>
+                !user && <NavLink className='kanit-font' to="/login">LOGIN</NavLink>
             }
         </li>
     </>
@@ -55,9 +55,9 @@ const NavBar = ({ toggleMode, isDarkMode }) => {
                     </div>
                 </div>
                 <div className="hidden navbar-center lg:flex">
-                    <ul className="flex items-center justify-center gap-4 px-1 font-semibold menu menu-horizontal">
+                    <ul className="flex items-center justify-center gap-4 px-1 font-semibold kanit-font menu menu-horizontal">
                         {navOptions}
-                        <button onClick={toggleMode} className='hover:shadow-lg hover:shadow-warning'>
+                        <button onClick={toggleMode} className='px-2 rounded-md hover:shadow-md hover:shadow-warning carter-font'>
                             <div className='flex items-center gap-1'>
                                 <FaSun></FaSun>
                                 <span>
@@ -70,13 +70,10 @@ const NavBar = ({ toggleMode, isDarkMode }) => {
                 <div className="navbar-end me-8">
                     {
                         user &&
-                        <div className='flex items-center gap-4'>
-                            {user?.photoURL ? <img src={user?.photoURL} alt="" className='rounded-full w-9 h-9' /> : <FaUserAlt></FaUserAlt>}
-                            <p>{user?.displayName}</p>
-                            <button
-                                onClick={handleLogOut}
-                                className='flex items-center p-2 font-bold rounded-sm btn-xs btn-warning'
-                            >LOG OUT</button>
+                        <div className='flex items-center gap-4 transition-transform duration-500 hover:-translate-y-2'>
+                            {user?.photoURL ? <img src={user?.photoURL} alt="" className='w-6 h-6 rounded-full' /> : <FaUserAlt></FaUserAlt>}
+                            <p className='text-xs carter-font'>{user?.displayName}</p>
+                            <button onClick={handleLogOut} className='p-1 text-sm rounded-sm kanit-font btn-active btn-warning'>LOG OUT</button>
                         </div>
                     }
                 </div>

@@ -1,3 +1,24 @@
-.kanit-font{
-    font-family: 'Kanit', sans-serif;
+@keyframes newsHeadlineAnimation {
+    0% {
+        transform: translateX(100%);
+    }
+
+    90% {
+        transform: translateX(0%);
+    }
+
+    100% {
+        opacity: 0;
+        transform: translateX(-100%);
+    }
+}
+
+.animate-newsHeadline .news-headline-container {
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.animate-newsHeadline .news-headline-text {
+    display: inline-block;
+    animation: newsHeadlineAnimation 10s linear infinite;
 }
