@@ -6,7 +6,6 @@ import Footer from '../Shared/Footer/Footer';
 const Layout = () => {
     return (
         <div className='container mx-auto'>
-            <NavBar></NavBar>
             <Outlet></Outlet>
             <Footer></Footer>
         </div>

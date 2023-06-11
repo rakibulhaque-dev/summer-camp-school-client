@@ -1,13 +1,17 @@
 import React from 'react';
 import useCartItems from '../../hooks/useCartItems';
 import { Helmet } from 'react-helmet-async';
-import { FaTrashAlt } from 'react-icons/fa';
+import { FaCartArrowDown, FaTrashAlt } from 'react-icons/fa';
+import '../../../src/index.css'
 
 const MySelectedClasses = () => {
     const [cartItems, isLoading, refetch] = useCartItems()
     return (
         <div className='w-full'>
-            <p className='p-6 mb-24 text-3xl font-bold text-center border rounded-md shadow-lg text-secondary-focus'>My Selected Classes Here: {cartItems.length}</p>
+            <div>
+                <p className='p-6 mb-24 text-3xl font-bold border-l-8 border-orange-600 rounded-md shadow-lg carter-font text-amber-800'>
+                    My Selected Classes <br /> <span className='flex items-center gap-3 text-sm border-t-2'><FaCartArrowDown></FaCartArrowDown> <span className='text-black'>Total cart items: <span className='text-red-600'>{cartItems.length}</span> item</span></span> </p>
+            </div>
 
             <Helmet>
                 <title>Selected Classes | Cart | LS</title>

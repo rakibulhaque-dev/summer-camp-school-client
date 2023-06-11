@@ -2,10 +2,12 @@ import React from 'react';
 import logo from '../../../src/assets/logo.jpg';
 import { Link, NavLink } from 'react-router-dom';
 import useAuth from '../../hooks/useAuth';
-import { FaBookReader, FaHome, FaShoppingBag, FaUserAlt, FaUserShield } from 'react-icons/fa';
+import { FaBookReader, FaHome, FaShoppingBag, FaSun, FaUserAlt, FaUserShield } from 'react-icons/fa';
 import useCartItems from '../../hooks/useCartItems';
+import '../../../src/index.css'; 
 
-const NavBar = () => {
+
+const NavBar = ({ toggleMode, isDarkMode }) => {
     const { user, logOut } = useAuth();
     const [cartItems] = useCartItems();
 
@@ -16,9 +18,10 @@ const NavBar = () => {
             .then(() => { })
             .catch(error => console.log(error));
     }
+
     const navOptions = <>
         <li><Link to="/"> <FaHome></FaHome> HOME</Link></li>
-        <li><Link to="/instructors"><FaUserShield></FaUserShield> INSTRUCTORS</Link></li>
+        <li><NavLink to="/instructors"><FaUserShield></FaUserShield> INSTRUCTORS</NavLink></li>
         <li><Link to="/classes"><FaBookReader></FaBookReader> CLASSES</Link></li>
         <li><Link to="/dashboard"> DASHBOARD</Link></li>
         <li>
@@ -54,11 +57,20 @@ const NavBar = () => {
                 <div className="hidden navbar-center lg:flex">
                     <ul className="flex items-center justify-center gap-4 px-1 font-semibold menu menu-horizontal">
                         {navOptions}
+                        <button onClick={toggleMode} className='hover:shadow-lg hover:shadow-warning'>
+                            <div className='flex items-center gap-1'>
+                                <FaSun></FaSun>
+                                <span>
+                                    {isDarkMode ? 'Light' : 'Dark'}
+                                </span>
+                            </div>
+                        </button>
                     </ul>
                 </div>
                 <div className="navbar-end me-8">
                     {
-                        user && <div className='flex items-center gap-4'>
+                        user &&
+                        <div className='flex items-center gap-4'>
                             {user?.photoURL ? <img src={user?.photoURL} alt="" className='rounded-full w-9 h-9' /> : <FaUserAlt></FaUserAlt>}
                             <p>{user?.displayName}</p>
                             <button

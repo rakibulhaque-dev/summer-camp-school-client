@@ -1,3 +1,30 @@
+@import url('https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,900;1,400;1,500;1,600;1,700;1,900&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@import url('https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&display=swap');
+
+/* styles.css */
+
+/* Light mode */
+:root {
+  --bg-color: #ffffff;
+  --text-color: #000000;
+}
+
+/* Dark mode */
+.dark-mode {
+  --bg-color: #000000;
+  --text-color: #ffffff;
+}
+
+.kanit-font {
+  font-family: 'Kanit', sans-serif;
+}
+.carter-font{
+  font-family: 'Carter One', cursive;
+}
+
+.prism-font{
+  font-family: 'Tilt Prism', cursive
+}

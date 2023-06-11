@@ -1,12 +1,16 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import useCartItems from '../hooks/useCartItems';
 import Swal from 'sweetalert2';
 import { useLocation, useNavigate } from 'react-router-dom';
 import useAuth from '../hooks/useAuth';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+import '../../src/index.css'
+import { FaCartPlus, FaEye } from 'react-icons/fa';
 
 const ClassCard = ({ singleClass }) => {
     // console.log(singleClass)
-    const {user} = useAuth();
+    const { user } = useAuth();
     const { availableSeats, otherClasses, subjectPic, totalStudents, _id, subjectName, courseFee, instructorName } = singleClass;
     const [cartItems, isLoading, refetch] = useCartItems();
     const navigate = useNavigate();
@@ -54,18 +58,25 @@ const ClassCard = ({ singleClass }) => {
         }
     }
 
+
+    useEffect(() => {
+        AOS.init();
+    }, [])
     return (
-        <div className='items-center justify-center gap-4 text-center border rounded-md shadow-lg card'>
+        <div className='items-center justify-center gap-4 mb-6 text-center border rounded-md shadow-lg card kanit-font' data-aos="flip-left"
+            data-aos-easing="ease-out-cubic"
+            data-aos-duration="2000">
             <div className='card-body'>
-                <img className='h-auto w-72' src={subjectPic} alt="" />
-                <p className='font-bold text-primary'>Subject Name: <span className='font-extrabold'>{subjectName}</span></p>
-                <p>Instructor Name:  <span className='font-extrabold'>{instructorName}</span></p>
+                <p className='absolute top-0 right-0 flex items-center gap-2 p-2 -mt-8 text-lg rounded-l-lg shadow-lg carter-font shadow-black bg-warning'><FaEye />Most Viewed</p>
+                <img className='w-full h-full transition-all duration-300 transform hover:scale-105' src={subjectPic} alt="" />
             </div>
-            <div className='my-4'>
+            <div className='my-2'>
+                <p className='font-bold text-orange-950'>Subject Name: <span className='font-extrabold carter-font'>{subjectName}</span></p>
+                <p>Instructor Name:  <span className='font-extrabold'>{instructorName}</span></p>
                 <p>Total Students: {totalStudents}</p>
                 <p>Available Seats: {availableSeats}</p>
                 <p className='font-bold text-yellow-600'>Fee: ${courseFee}</p>
-                <button onClick={() => handleSelect(singleClass)} className='mt-3 font-bold btn btn-primary btn-sm hover:bg-transparent' >Select</button>
+                <button onClick={() => handleSelect(singleClass)} className='mt-3 font-bold btn btn-success btn-sm hover:bg-transparent' ><FaCartPlus /> Select</button>
             </div>
         </div>
     );

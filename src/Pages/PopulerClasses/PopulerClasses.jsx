@@ -1,15 +1,21 @@
 import React from 'react';
 import useClasses from '../../hooks/useClasses';
 import ClassCard from '../../components/ClassCard';
+import { FaPiedPiperAlt } from 'react-icons/fa';
 
 const PopulerClasses = () => {
     const [classes, loading, refecth] = useClasses();
     const popularClasses = classes.filter((singleClass) => singleClass.totalStudents > 40);
 
     return (
-        <div className='text-center'>
-            <h3 className='py-8 my-4 text-3xl font-extrabold text-center text-black border rounded-md shadow-lg bg-base-200'>
-                Popular Classes <br /> <span className='text-xs text-yellow-700'>More than 40 enrolled sorted</span> </h3>
+        <div className='container mx-auto'>
+            <div className='p-5 mt-20 mb-20 text-3xl'>
+                <h3 className='p-3 ml-3 font-semibold border-l-8 border-red-600 shadow-lg'>
+                    Populer Classes
+                    <br />
+                    <span className='flex items-center gap-3 text-xs font-kanit'><FaPiedPiperAlt></FaPiedPiperAlt> <span className='text-orange-700'>Here you find most of the students enrolled.</span></span>
+                </h3>
+            </div>
 
             <div className='grid gap-4 md:grid-cols-3'>
                 {popularClasses.map((singleClass) => <ClassCard
