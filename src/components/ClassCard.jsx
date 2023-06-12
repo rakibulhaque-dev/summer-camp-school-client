@@ -66,9 +66,9 @@ const ClassCard = ({ singleClass }) => {
         <div className='items-center justify-center gap-4 mb-6 text-center border rounded-md shadow-lg card kanit-font' data-aos="flip-left"
             data-aos-easing="ease-out-cubic"
             data-aos-duration="2000">
-            <div className='card-body'>
+            <div className='pb-0 mb-0 card-body'>
                 <p className='absolute top-0 right-0 flex items-center gap-2 p-2 -mt-8 text-lg rounded-l-lg shadow-lg carter-font shadow-black bg-warning'><FaEye />Most Viewed</p>
-                <img className='w-full h-full transition-all duration-300 transform hover:scale-105' src={subjectPic} alt="" />
+                <img className='w-full transition-all duration-300 transform h-3/4/4 hover:scale-105' src={subjectPic} alt="" />
             </div>
             <div className='my-2'>
                 <p className='font-bold text-orange-950'>Subject Name: <span className='font-extrabold carter-font'>{subjectName}</span></p>

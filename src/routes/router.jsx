@@ -25,6 +25,7 @@ import InstructorRoute from "./InstructorRoute";
 import StudentRoute from "./StudentRoute";
 import Layout from "../Layout/Layout";
 import Error from "../Error/Error";
+import UserProfile from "../UserProfile";
 
 
 const router = createBrowserRouter([
@@ -49,7 +50,11 @@ const router = createBrowserRouter([
                         path: '/popularclass',
                         element: <PopulerClasses></PopulerClasses>
                     },
-                    
+                    {
+                        path: '/profile',
+                        element: <PrivateRoute><UserProfile></UserProfile></PrivateRoute>
+                    }
+
                 ]
             }
         ]
@@ -72,7 +77,7 @@ const router = createBrowserRouter([
             },
             {
                 path: '/dashboard/enrolled',
-                element:<MyEnrolledClasses></MyEnrolledClasses>
+                element: <MyEnrolledClasses></MyEnrolledClasses>
             },
             {
                 path: '/dashboard/paymenthistory',
@@ -85,7 +90,7 @@ const router = createBrowserRouter([
             },
             {
                 path: '/dashboard/myallclasses',
-                element:<MyAllClasses></MyAllClasses>
+                element: <MyAllClasses></MyAllClasses>
             },
             {
                 path: '/dashboard/enrolledstudents',

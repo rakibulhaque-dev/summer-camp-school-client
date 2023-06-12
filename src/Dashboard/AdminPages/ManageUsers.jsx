@@ -74,21 +74,39 @@ const ManageUsers = () => {
                                 <th>{index + 1}</th>
                                 <td>{user.name}</td>
                                 <td>{user.role}</td>
-                                <td>
-                                    <div className='flex gap-3'>
+                                <td className='mr-2'>
+                                    <div className='flex'>
                                         {
-                                            user.role === 'student' || user.role === 'instructor' ?
-                                             <button
-                                              onClick={() => handleMakeAdmin(user)} 
-                                              className='font-bold btn-xs hover:btn-warning btn-accent btn'>Make Admin</button> : ''
-                                        }
-                                    </div>
-                                    <div>
-                                        {
-                                            user.role === 'student' && 
-                                            <button
-                                            onClick={()=>handleMakeInstructor(user)}
-                                            className='btn-xs hover:btn-primary btn-success btn'>Make Instructor</button>
+                                            user?.role === 'admin' || user?.role === 'instructor' ?
+                                                <>
+                                                    <button
+                                                        disabled
+                                                        className='font-bold btn-xs hover:btn-warning btn-accent btn'
+                                                    >
+                                                        Make Admin
+                                                    </button>
+                                                    <button
+                                                        disabled
+                                                        className='btn-xs hover:btn-primary btn-success btn'
+                                                    >
+                                                        Make Instructor
+                                                    </button>
+                                                </> 
+                                                : 
+                                                <div>
+                                                    <button
+                                                        onClick={() => handleMakeInstructor(user)}
+                                                        className='btn-xs hover:btn-primary btn-success btn'
+                                                    >
+                                                        Make Instructor
+                                                    </button>
+                                                    <button
+                                                        onClick={() => handleMakeAdmin(user)}
+                                                        className='font-bold btn-xs hover:btn-warning btn-accent btn'
+                                                    >
+                                                        Make Admin
+                                                    </button>
+                                                </div>
                                         }
                                     </div>
                                 </td>

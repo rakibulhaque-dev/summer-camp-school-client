@@ -1,11 +1,11 @@
 import React from 'react';
-import logo from '../../../src/assets/logo.jpg';
+import logo from '../../../src/assets/logo.png';
 import { Link, NavLink } from 'react-router-dom';
 import useAuth from '../../hooks/useAuth';
-import { FaBookReader, FaDashcube, FaHome, FaShoppingBag, FaSun, FaUserAlt, FaUserShield } from 'react-icons/fa';
+import { FaBookReader, FaDashcube, FaHome, FaShoppingBag, FaSun, FaUser, FaUserAlt, FaUserShield } from 'react-icons/fa';
 import useCartItems from '../../hooks/useCartItems';
-import '../../../src/index.css'; 
-
+import '../../../src/index.css';
+// 4644467591
 
 const NavBar = ({ toggleMode, isDarkMode }) => {
     const { user, logOut } = useAuth();
@@ -23,6 +23,16 @@ const NavBar = ({ toggleMode, isDarkMode }) => {
         <li><Link to="/"> <FaHome></FaHome> HOME</Link></li>
         <li><NavLink to="/instructors"><FaUserShield></FaUserShield> INSTRUCTORS</NavLink></li>
         <li><Link to="/classes"><FaBookReader></FaBookReader> CLASSES</Link></li>
+        <li>
+            <Link to="/profile">
+                <span className="relative flex items-center gap-x-2">
+                    <FaUser />
+                    <span>
+                        PROFILE
+                    </span>
+                </span>
+            </Link>
+        </li>
         <li><Link to="/dashboard"><FaDashcube></FaDashcube> DASHBOARD</Link></li>
         <li>
             <Link to="/dashboard/myclass">
@@ -38,8 +48,8 @@ const NavBar = ({ toggleMode, isDarkMode }) => {
     </>
 
     return (
-        <div className='container py-4 mx-auto mb-6'>
-            <div className="border rounded-md shadow-lg navbar bg-base-100 shadow-purple-200">
+        <div className='container mx-auto mb-6 text-white'>
+            <div className="navbar bg-base-100 bg-gradient-to-r from-purple-500 to-blue-500">
                 <div className="navbar-start">
                     <div className="mr-3 dropdown">
                         <label tabIndex={0} className="btn btn-ghost lg:hidden">
