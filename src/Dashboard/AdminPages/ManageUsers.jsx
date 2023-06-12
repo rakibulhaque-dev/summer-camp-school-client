@@ -8,6 +8,8 @@ const ManageUsers = () => {
 
     const [users, loading, refetch] = useUsers();
 
+
+    // UPDATE ADMIN
     const handleMakeAdmin = user => {
         fetch(`http://localhost:5000/users/admin/${user._id}`, {
             method: 'PATCH'
@@ -27,14 +29,17 @@ const ManageUsers = () => {
             })
     }
 
-    // handle Make Instructor
+    // UPDATE INSTRUCTOR
     const handleMakeInstructor = user => {
-        fetch(`http://localhost:5000/users/instructor/${user._id}`, {
-            method: 'PATCH'
+        fetch(`http://localhost:5000/users/instructor/${user?._id}`, {
+            method: 'PATCH',
+            headers: {
+                'Content-Type': 'application/json' // Add the Content-Type header
+            }
         })
             .then(res => res.json())
             .then(data => {
-                console.log(data)
+                console.log(data);
                 if (data.modifiedCount) {
                     refetch();
                     Swal.fire({
@@ -43,10 +48,11 @@ const ManageUsers = () => {
                         title: `${user.name} is now Instructor!`,
                         showConfirmButton: false,
                         timer: 1500
-                    })
+                    });
                 }
-            })
-    }
+            });
+    };
+
 
     return (
         <div className='w-full'>
@@ -75,40 +81,40 @@ const ManageUsers = () => {
                                 <td>{user.name}</td>
                                 <td>{user.role}</td>
                                 <td className='mr-2'>
-                                    <div className='flex'>
-                                        {
-                                            user?.role === 'admin' || user?.role === 'instructor' ?
-                                                <>
-                                                    <button
-                                                        disabled
-                                                        className='font-bold btn-xs hover:btn-warning btn-accent btn'
-                                                    >
-                                                        Make Admin
-                                                    </button>
-                                                    <button
-                                                        disabled
-                                                        className='btn-xs hover:btn-primary btn-success btn'
-                                                    >
-                                                        Make Instructor
-                                                    </button>
-                                                </> 
-                                                : 
-                                                <div>
-                                                    <button
-                                                        onClick={() => handleMakeInstructor(user)}
-                                                        className='btn-xs hover:btn-primary btn-success btn'
-                                                    >
-                                                        Make Instructor
-                                                    </button>
-                                                    <button
-                                                        onClick={() => handleMakeAdmin(user)}
-                                                        className='font-bold btn-xs hover:btn-warning btn-accent btn'
-                                                    >
-                                                        Make Admin
-                                                    </button>
-                                                </div>
-                                        }
-                                    </div>
+
+                                    {
+                                        user?.role === 'admin' || user?.role === 'instructor' ?
+                                            <>
+                                                <button
+                                                    disabled
+                                                    className='font-bold btn-xs hover:btn-warning btn-accent btn'
+                                                >
+                                                    Make Admin
+                                                </button>
+                                                <button
+                                                    disabled
+                                                    className='btn-xs hover:btn-primary btn-success btn'
+                                                >
+                                                    Make Instructor
+                                                </button>
+                                            </>
+                                            :
+                                            <div>
+                                                <button
+                                                    onClick={() => handleMakeInstructor(user)}
+                                                    className='btn-xs hover:btn-primary btn-success btn'
+                                                >
+                                                    Make Instructor
+                                                </button>
+                                                <button
+                                                    onClick={() => handleMakeAdmin(user)}
+                                                    className='font-bold btn-xs hover:btn-warning btn-accent btn'
+                                                >
+                                                    Make Admin
+                                                </button>
+                                            </div>
+                                    }
+
                                 </td>
                                 <td><button
                                     className='p-2 text-red-500 rounded-full shadow-lg hover:bg-accent-focus'

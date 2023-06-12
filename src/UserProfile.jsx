@@ -45,6 +45,10 @@ const UserProfile = () => {
                             <label className='block mb-1 font-medium text-gray-700'>Email:</label>
                             <p className='text-gray-800'>{user?.email}</p>
                         </div>
+                        <div className='mb-6'>
+                            <label className='block mb-1 font-medium text-gray-700'>Number:</label>
+                            <p className='text-gray-800'>{user?.phoneNumber}</p>
+                        </div>
                         </div>
                         <button className='px-4 py-2 font-semibold text-white bg-blue-500 rounded hover:bg-blue-600'>
                             Edit Profile

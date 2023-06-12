@@ -1,13 +1,16 @@
 import React from 'react';
 import useAuth from '../hooks/useAuth';
 import { Navigate, useLocation } from 'react-router-dom';
+import { RiseLoader } from 'react-spinners';
+
 
 const PrivateRoute = ({children}) => {
     const { user, loading } = useAuth();
     const location = useLocation();
 
     if(loading){
-        return <span className="loading loading-bars loading-lg"></span>
+        return <RiseLoader className='mt-56 text-center'></RiseLoader>
+
 
     }
 

@@ -14,6 +14,7 @@ const Register = () => {
   const navigate = useNavigate();
 
   const onSubmit = data => {
+    console.log(data)
     createUser(data.email, data.password)
       .then(result => {
         const loggedUser = result.user;
@@ -22,10 +23,12 @@ const Register = () => {
         updateUserProfile(data.name, data.photoURL)
           .then(() => {
             const saveUser = {
-              name: data.name,
+              displayName: data.name,
               email: data.email,
               photoURL: data.photoURL,
               role: "student",
+              address: data.address,
+              phoneNumber: data.phoneNumber,
             }
             fetch('http://localhost:5000/users', {
               method: 'POST',
@@ -101,9 +104,7 @@ const Register = () => {
                 {errors.password?.type === 'minLength' && <p className="text-red-600">Should be 6 character length!</p>}
                 {errors.password?.type === 'maxLength' && <p className="text-red-600">Must be less than 16 characters</p>}
                 {errors.password?.type === 'pattern' && <p className="text-red-600">Password must have one lowercase, and one numeric value</p>}
-                <label className="label">
-                  <a href="#" className="label-text-alt link link-hover">Forgot password?</a>
-                </label>
+  
               </div>
               <div className="form-control">
                 <label className="label">
@@ -118,8 +119,14 @@ const Register = () => {
                 <label className="label">
                   <span className="label-text">Phone Number</span>
                 </label>
-                <input type="tel" {...register("phoneNumber", { required: true })} placeholder="Phone Number with Country Code" className="input input-bordered" />
+                <input type="tel" {...register("phoneNumber", { required: true })} placeholder="Phone Number " className="input input-bordered" />
                 {errors.phoneNumber && <span className="text-red-600">Phone Number is required</span>}
+              </div>
+              <div className="form-control">
+                <label className="label">
+                  <span className="label-text">Address</span>
+                </label>
+                <input type="tel" {...register("address", { required: true })} placeholder="Address" className="input input-bordered" />
               </div>
               <div className="mt-4 form-control">
                 <input className="shadow-lg btn btn-accent" type="submit" value="Sign Up" />

@@ -2,15 +2,24 @@ import React from 'react';
 import { useQuery } from '@tanstack/react-query';
 
 const useAllInstructors = () => {
-    const { data: instructors = [], isLoading: loading, refetch } = useQuery({
+    const { data: instructors = [], isLoading: loading, error, refetch } = useQuery({
         queryKey: ['instructors'],
         queryFn: async () => {
-            const res = await fetch('http://localhost:5000/instructors');
-            return res.json();
-        }
-    })
+            try {
+                const res = await fetch('http://localhost:5000/instructors');
 
-    return [instructors, loading, refetch]
+                if (!res.ok) {
+                    throw new Error('Failed to fetch instructors');
+                }
+
+                return res.json();
+            } catch (error) {
+                throw new Error('Failed to fetch instructors');
+            }
+        }
+    });
+
+    return [instructors, loading, error, refetch];
 };
 
 export default useAllInstructors;

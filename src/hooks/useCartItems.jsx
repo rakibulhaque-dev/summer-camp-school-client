@@ -7,20 +7,15 @@ const useCartItems = () => {
 
     const { data: cartItems = [], isLoading, refetch } = useQuery({
         queryKey: ['cartItems', user?.email],
-        enabled: !loading,
+        enabled: !loading && user?.role === 'student', // Only enable the query if the user's role is 'student'
         queryFn: async () => {
-            try {
-                const res = await fetch(`http://localhost:5000/cartitems?email=${user?.email}`, {
-                    headers: {
-                        authorization: `bearer ${token}`
-                    }
-                });
-                return res.json();
-            } catch (error) {
-                // Handle error appropriately, e.g., show an error message or log the error
-                console.error('Error fetching cart items:', error);
-                throw new Error('Failed to fetch cart items');
-            }
+            const res = await fetch(`http://localhost:5000/cartitems/${user?.email}`, {
+                headers: {
+                    authorization: `bearer ${token}`
+                }
+            });
+            const data = await res.json();
+            return data;
         }
     });
 
