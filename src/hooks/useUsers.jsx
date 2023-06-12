@@ -3,18 +3,23 @@ import useAxiosSecure from "./useAxiosSecure";
 import useAuth from "./useAuth";
 
 const useUsers = () => {
-  const [axiosSecure] = useAxiosSecure();
+  const axiosSecure = useAxiosSecure(); // Remove array destructuring
+
   const { user } = useAuth();
 
-  const { data: users = [], isLoading: loading, refetch } = useQuery(['users'], async () => {
-    if (user?.role === 'admin') {
-      const res = await axiosSecure.get('/users');
-      return res.data;
+  const { data: users = [], isLoading: loading, refetch } = useQuery(
+    ['users'],
+    async () => {
+      if (user?.role === 'admin') {
+        const res = await axiosSecure.get('/users');
+        return res.data;
+      }
+      return [];
     }
-    return [];
-  });
+  );
 
   return [users, loading, refetch];
 };
 
 export default useUsers;
+

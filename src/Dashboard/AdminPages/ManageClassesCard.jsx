@@ -1,31 +1,35 @@
+import axios from 'axios';
 import React from 'react';
 import { FaPrint, FaReadme, FaSearchDollar, FaUserCheck } from 'react-icons/fa';
 import Swal from 'sweetalert2';
 
-const ManageClassesCard = ({ item, refetch }) => {
+const ManageClassesCard = ({ item, refetch, fetchPendingClasses }) => {
     const { courseFee, otherClasses, status, subjectName, subjectPic, totalStudents, instructorName } = item;
 
 
     const handleApprove = (item) => {
-        console.log(item)
+        axios
+          .patch(`/classes/${item._id}`, { status: 'approved' })
+          .then((response) => {
+            console.log('Approval Data', response.data)
+            if (response.data.modifiedCount) {
 
-        fetch(`http://localhost:5000/classes/${item._id}`, {
-            method: 'PATCH'
-        })
-        .then(res => res.json())
-        .then(data => {
-            if (data.modifiedCount) {
-                refetch();
-                Swal.fire({
-                    position: 'top-end',
-                    icon: 'success',
-                    title: `Approved Class!`,
-                    showConfirmButton: false,
-                    timer: 1500
-                })
+              refetch();
+              fetchPendingClasses();
+              Swal.fire({
+                position: 'top-end',
+                icon: 'success',
+                title: 'Approved Class!',
+                showConfirmButton: false,
+                timer: 1500
+              });
             }
-        })
-    }
+          })
+          .catch((error) => {
+            console.error('Error approving class:', error);
+          });
+      };
+      
 
 
 

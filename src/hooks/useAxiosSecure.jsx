@@ -9,7 +9,7 @@ const useAxiosSecure = () => {
     const navigate = useNavigate(); 
 
     const axiosSecure = axios.create({
-      baseURL: 'http://localhost:5000', 
+      baseURL: 'https://language-school-server-ten.vercel.app', 
     });
 
   useEffect(() => {

@@ -1,22 +1,22 @@
 import React from 'react';
 import useUsers from '../../hooks/useUsers';
 import { Helmet } from 'react-helmet-async';
-import { FaTrashAlt } from 'react-icons/fa';
+import { FaCartArrowDown, FaTrashAlt } from 'react-icons/fa';
 import Swal from 'sweetalert2';
+import useAxiosSecure from '../../hooks/useAxiosSecure';
 
 const ManageUsers = () => {
 
     const [users, loading, refetch] = useUsers();
+    console.log(users)
 
+    const [axiosSecure] = useAxiosSecure()
 
     // UPDATE ADMIN
     const handleMakeAdmin = user => {
-        fetch(`https://language-school-server-ten.vercel.app/users/admin/${user._id}`, {
-            method: 'PATCH'
-        })
-            .then(res => res.json())
-            .then(data => {
-                if (data.modifiedCount) {
+        axiosSecure.patch(`https://language-school-server-ten.vercel.app/users/admin/${user._id}`)
+            .then(res => {
+                if (res.data.modifiedCount) {
                     refetch();
                     Swal.fire({
                         position: 'top-end',
@@ -24,23 +24,24 @@ const ManageUsers = () => {
                         title: `${user.name} is now Admin!`,
                         showConfirmButton: false,
                         timer: 1500
-                    })
+                    });
                 }
             })
-    }
+            .catch(error => {
+                // Handle error
+            });
+    };
+
 
     // UPDATE INSTRUCTOR
     const handleMakeInstructor = user => {
-        fetch(`https://language-school-server-ten.vercel.app/users/instructor/${user?._id}`, {
-            method: 'PATCH',
+        axiosSecure.patch(`https://language-school-server-ten.vercel.app/users/instructor/${user?._id}`, {
             headers: {
                 'Content-Type': 'application/json' // Add the Content-Type header
             }
         })
-            .then(res => res.json())
-            .then(data => {
-                console.log(data);
-                if (data.modifiedCount) {
+            .then(res => {
+                if (res.data.modifiedCount) {
                     refetch();
                     Swal.fire({
                         position: 'top-end',
@@ -50,8 +51,12 @@ const ManageUsers = () => {
                         timer: 1500
                     });
                 }
+            })
+            .catch(error => {
+                // Handle error
             });
     };
+
 
 
     return (
@@ -60,6 +65,11 @@ const ManageUsers = () => {
             <Helmet>
                 <title>Manage Users | Language School</title>
             </Helmet>
+
+            <div className='transition-transform duration-500 hover:-translate-y-2'>
+                <p className='p-6 mb-24 text-3xl font-bold border-l-8 border-orange-600 rounded-md shadow-lg carter-font text-amber-800'>
+                    Manage Users <br /> <span className='flex items-center gap-3 text-sm border-t-2'><FaCartArrowDown></FaCartArrowDown> <span className='text-black'> <span className='text-red-600'>: {users.length} People</span> </span></span> </p>
+            </div>
 
             <div className="w-full overflow-x-auto">
                 <table className="table table-zebra">

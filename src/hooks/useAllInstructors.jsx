@@ -6,7 +6,7 @@ const useAllInstructors = () => {
         queryKey: ['instructors'],
         queryFn: async () => {
             try {
-                const res = await fetch('http://localhost:5000/instructors');
+                const res = await fetch('https://language-school-server-ten.vercel.app/instructors');
 
                 if (!res.ok) {
                     throw new Error('Failed to fetch instructors');

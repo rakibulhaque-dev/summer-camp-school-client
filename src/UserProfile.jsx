@@ -21,7 +21,7 @@ const UserProfile = () => {
                     <div className='flex items-center justify-between p-4'>
                         <div className='flex items-center'>
                             <div className='p-2 bg-gray-200 rounded-full'>
-                                <img className='rounded-full' src={user?.photoURL} alt="" />
+                                <img className='w-24 rounded-full md:w-44' src={user?.photoURL} alt="" />
                             </div>
                             <h1 className='ml-4 text-2xl font-semibold text-gray-800'>{user?.displayName}</h1>
                         </div>
@@ -38,7 +38,7 @@ const UserProfile = () => {
                             <p className='text-gray-800'>{user?.bio}</p>
                         </div>
                         <div className='mb-6'>
-                            <label className='block mb-1 font-medium text-gray-700'>Location:</label>
+                            <label className='block mb-1 font-medium text-gray-700'>Location: {user?.address}</label>
                             <p className='text-gray-800'>{user?.address}</p>
                         </div>
                         <div className='mb-6'>

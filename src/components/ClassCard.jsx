@@ -24,7 +24,7 @@ const ClassCard = ({ singleClass }) => {
 
             // Rest of the code for regular users
             const cartItem = { subjectId: _id, courseFee, instructorName, subjectName, subjectPic, email: user.email };
-            fetch('http://localhost:5000/cartitems', {
+            fetch('https://language-school-server-ten.vercel.app/cartitems', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'

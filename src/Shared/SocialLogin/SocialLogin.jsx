@@ -24,7 +24,7 @@ const SocialLogin = () => {
                     
                 }
 
-                fetch('http://localhost:5000/users', {
+                fetch('https://language-school-server-ten.vercel.app/users', {
                     method: 'POST',
                     headers: {
                         'content-type': 'application/json'

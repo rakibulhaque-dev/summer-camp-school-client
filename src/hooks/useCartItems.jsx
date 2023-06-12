@@ -10,7 +10,7 @@ const useCartItems = () => {
         queryKey: ['cartItems', user?.email],
         enabled: !loading && user?.role === 'student', // Only enable the query if the user's role is 'student'
         queryFn: async () => {
-            const res = await useAxiosSecure.get(`http://localhost:5000/cartitems/${user?.email}`, {
+            const res = await useAxiosSecure.get(`https://language-school-server-ten.vercel.app/cartitems/${user?.email}`, {
                 
             });
             const data = await res.json();
