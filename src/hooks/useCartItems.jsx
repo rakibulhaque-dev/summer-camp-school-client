@@ -1,5 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import useAuth from "./useAuth";
+import useAxiosSecure from "./useAxiosSecure";
 
 const useCartItems = () => {
     const { user, loading } = useAuth();
@@ -9,10 +10,8 @@ const useCartItems = () => {
         queryKey: ['cartItems', user?.email],
         enabled: !loading && user?.role === 'student', // Only enable the query if the user's role is 'student'
         queryFn: async () => {
-            const res = await fetch(`http://localhost:5000/cartitems/${user?.email}`, {
-                headers: {
-                    authorization: `bearer ${token}`
-                }
+            const res = await useAxiosSecure.get(`http://localhost:5000/cartitems/${user?.email}`, {
+                
             });
             const data = await res.json();
             return data;

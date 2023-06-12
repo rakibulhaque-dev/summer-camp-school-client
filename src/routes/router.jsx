@@ -1,10 +1,8 @@
 import {
     createBrowserRouter,
-    RouterProvider,
 } from "react-router-dom";
 import Home from "../Pages/Home/Home";
 import Instructors from "../Pages/Instructors/Instructors";
-import Banner from "../Pages/Banner/Banner";
 import Register from "../Pages/Register/Register";
 import Login from "../Pages/Login/Login";
 import MyClasses from "../Pages/MyClasses/MyClasses";
@@ -22,7 +20,6 @@ import ManageClasses from "../Dashboard/AdminPages/ManageClasses";
 import AdminHome from "../Dashboard/AdminPages/AdminHome";
 import AdminRoute from "./AdminRoute";
 import InstructorRoute from "./InstructorRoute";
-import StudentRoute from "./StudentRoute";
 import Layout from "../Layout/Layout";
 import Error from "../Error/Error";
 import UserProfile from "../UserProfile";
@@ -86,15 +83,15 @@ const router = createBrowserRouter([
             // instructors pages
             {
                 path: '/dashboard/addnewclass',
-                element: <AddNewClasses></AddNewClasses>
+                element: <InstructorRoute><AddNewClasses></AddNewClasses></InstructorRoute>
             },
             {
                 path: '/dashboard/myallclasses',
-                element: <MyAllClasses></MyAllClasses>
+                element: <InstructorRoute><MyAllClasses></MyAllClasses></InstructorRoute>
             },
             {
                 path: '/dashboard/enrolledstudents',
-                element: <EnrolledStudents></EnrolledStudents>
+                element: <InstructorRoute><EnrolledStudents></EnrolledStudents></InstructorRoute>
             },
             // admin pages
             {

@@ -15,12 +15,12 @@ const SocialLogin = () => {
         googleSignIn()
             .then(result => {
                 const loggedUser = result.user;
-                console.log(loggedUser);
+                console.log('Logged by G: ', loggedUser);
                 const saveUser = {
-                    name: loggedUser.displayName,
+                    displayName: loggedUser.displayName,
                     email: loggedUser.email,
                     photoURL: loggedUser.photoURL,
-                    role: loggedUser.role,
+                    role: 'student',
                     
                 }
 

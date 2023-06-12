@@ -1,17 +1,24 @@
 import React from 'react';
 import { NavLink, Outlet } from 'react-router-dom';
-import { FaCoins, FaHome, FaListUl, FaMobileAlt, FaPenFancy, FaReadme, FaUserAltSlash, FaUserPlus, FaUsers } from "react-icons/fa";
+import { FaCoins, FaHome, FaListUl, FaPenFancy, FaReadme, FaUserPlus, FaUsers } from "react-icons/fa";
 import useAdmin from '../hooks/useAdmin';
 import useInstructor from '../hooks/useInstructor';
 import { Helmet } from 'react-helmet-async';
-import useAuth from '../hooks/useAuth';
 import NavBar from '../Shared/NavBar/NavBar';
+
+
+
+
+
+
+
+
 const Dashboard = () => {
-    const { user } = useAuth()
 
     // TODO:  isInstructor, isAdmin, isStudent will be dynamic
     // const isAdmin = true; 
     const [isAdmin, isAdminLoading] = useAdmin();
+    console.log(isAdmin)
     // const isInstructor = false;
     const [isInstructor, isInstructorLoading] = useInstructor();
     // const isStudent = true;
@@ -28,7 +35,6 @@ const Dashboard = () => {
     </>
     const adminLinks = <>
         <li><NavLink to='/dashboard/admin/manageclasses'><FaReadme></FaReadme> Manage Classes</NavLink></li>
-        <li><NavLink to='/dashboard/admin/adminhome'><FaHome></FaHome> Admin Home</NavLink></li>
         <li><NavLink to='/dashboard/admin/manageusers'><FaUserPlus></FaUserPlus> Manage Users</NavLink></li>
     </>
     return (
@@ -49,10 +55,11 @@ const Dashboard = () => {
                 <div className="drawer-side">
                     <label htmlFor="my-drawer-2" className="drawer-overlay"></label>
                     <ul className="h-full p-4 menu w-80 bg-base-200 text-base-content">
-                        {/* Sidebar content here */}
-                        {isInstructor && instructorLinks}
-                        {isAdmin && adminLinks}
-                        {!isAdmin && !isInstructor && studentsLinks}
+                        {isAdmin ? adminLinks : '' }
+                        {isInstructor ? instructorLinks : ''}
+                        {
+                            !isAdmin || !isInstructor ? studentsLinks : ''
+                        }
                     </ul>
                 </div>
             </div>

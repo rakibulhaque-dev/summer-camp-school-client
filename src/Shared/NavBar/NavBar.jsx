@@ -35,10 +35,12 @@ const NavBar = ({ toggleMode, isDarkMode }) => {
         </li>
         <li><Link to="/dashboard"><FaDashcube></FaDashcube> DASHBOARD</Link></li>
         <li>
-            <Link to="/dashboard/myclass">
-                <FaShoppingBag className='text-yellow-700'></FaShoppingBag>
-                <div className="p-2 border rounded-md badge badge-warning">+{cartItems?.length || 0}</div>
-            </Link>
+            {
+                user?.role === 'student' && <Link to="/dashboard/myclass">
+                    <FaShoppingBag className='text-yellow-700'></FaShoppingBag>
+                    <div className="p-2 border rounded-md badge badge-warning">+{cartItems?.length || 0}</div>
+                </Link>
+            }
         </li>
         <li>
             {
