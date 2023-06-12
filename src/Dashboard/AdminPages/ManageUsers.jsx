@@ -11,7 +11,7 @@ const ManageUsers = () => {
 
     // UPDATE ADMIN
     const handleMakeAdmin = user => {
-        fetch(`http://localhost:5000/users/admin/${user._id}`, {
+        fetch(`https://language-school-server-ten.vercel.app/users/admin/${user._id}`, {
             method: 'PATCH'
         })
             .then(res => res.json())
@@ -31,7 +31,7 @@ const ManageUsers = () => {
 
     // UPDATE INSTRUCTOR
     const handleMakeInstructor = user => {
-        fetch(`http://localhost:5000/users/instructor/${user?._id}`, {
+        fetch(`https://language-school-server-ten.vercel.app/users/instructor/${user?._id}`, {
             method: 'PATCH',
             headers: {
                 'Content-Type': 'application/json' // Add the Content-Type header
@@ -81,7 +81,6 @@ const ManageUsers = () => {
                                 <td>{user.name}</td>
                                 <td>{user.role}</td>
                                 <td className='mr-2'>
-
                                     {
                                         user?.role === 'admin' || user?.role === 'instructor' ?
                                             <>
