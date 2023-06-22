@@ -8,13 +8,13 @@ import useAxiosSecure from '../../hooks/useAxiosSecure';
 const ManageUsers = () => {
 
     const [users, loading, refetch] = useUsers();
-    console.log(users)
+    console.log('All users: ', users)
 
     const [axiosSecure] = useAxiosSecure()
 
     // UPDATE ADMIN
     const handleMakeAdmin = user => {
-        axiosSecure.patch(`https://language-school-server-ten.vercel.app/users/admin/${user._id}`)
+        axiosSecure.patch(`http://localhost:5000/users/admin/${user._id}`)
             .then(res => {
                 if (res.data.modifiedCount) {
                     refetch();
@@ -35,9 +35,9 @@ const ManageUsers = () => {
 
     // UPDATE INSTRUCTOR
     const handleMakeInstructor = user => {
-        axiosSecure.patch(`https://language-school-server-ten.vercel.app/users/instructor/${user?._id}`, {
+        axiosSecure.patch(`http://localhost:5000/users/instructor/${user?._id}`, {
             headers: {
-                'Content-Type': 'application/json' // Add the Content-Type header
+                'Content-Type': 'application/json'
             }
         })
             .then(res => {
@@ -88,8 +88,8 @@ const ManageUsers = () => {
                         {
                             users?.map((user, index) => <tr key={user._id}>
                                 <th>{index + 1}</th>
-                                <td>{user.name}</td>
-                                <td>{user.role}</td>
+                                <td>{user?.name}</td>
+                                <td>{user?.role}</td>
                                 <td className='mr-2'>
                                     {
                                         user?.role === 'admin' || user?.role === 'instructor' ?

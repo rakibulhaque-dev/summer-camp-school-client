@@ -5,7 +5,7 @@ import useAuth from "./useAuth";
 
 const useStudent = () => {
     const { user } = useAuth();
-    const [axiosSecure] = useAxiosSecure();
+    const axiosSecure = useAxiosSecure()
 
     const { data: isStudent, isLoading: isStudentLoading } = useQuery({
         queryKey: ['isStudent', user?.email],

@@ -4,21 +4,22 @@ import useAxiosSecure from "./useAxiosSecure";
 
 const useCartItems = () => {
     const { user, loading } = useAuth();
-    const token = localStorage.getItem('access-token');
+    const axiosSecure = useAxiosSecure()
+
 
     const { data: cartItems = [], isLoading, refetch } = useQuery({
         queryKey: ['cartItems', user?.email],
-        enabled: !loading && user?.role === 'student', // Only enable the query if the user's role is 'student'
+        enabled: !loading,
         queryFn: async () => {
-            const res = await useAxiosSecure.get(`https://language-school-server-ten.vercel.app/cartitems/${user?.email}`, {
-                
+            const res = await axiosSecure.get(`/cartitems/${user?.email}`, {
+
             });
-            const data = await res.json();
-            return data;
+            console.log('Cart Total: ', res.data)
+            return res.data;
         }
     });
-
     return [cartItems, isLoading, refetch];
+
 };
 
 export default useCartItems;

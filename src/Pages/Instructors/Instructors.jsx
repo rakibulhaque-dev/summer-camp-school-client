@@ -7,6 +7,7 @@ import { Link } from 'react-router-dom';
 
 const Instructors = () => {
     const [instructors] = useAllInstructors()
+    console.log(instructors)
 
     return (
         <>

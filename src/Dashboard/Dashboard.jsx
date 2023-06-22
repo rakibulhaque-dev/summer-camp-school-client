@@ -1,16 +1,17 @@
 import React from 'react';
 import { NavLink, Outlet } from 'react-router-dom';
 import { FaCoins, FaHome, FaListUl, FaPenFancy, FaReadme, FaUserPlus, FaUsers } from "react-icons/fa";
-import useAdmin from '../hooks/useAdmin';
 import useInstructor from '../hooks/useInstructor';
 import { Helmet } from 'react-helmet-async';
 import NavBar from '../Shared/NavBar/NavBar';
 import useAuth from '../hooks/useAuth';
-
+import useAdmin from '../hooks/useAdmin';
 const Dashboard = () => {
-    const {user} = useAuth()
+    const { user } = useAuth();
     const [isAdmin, isAdminLoading] = useAdmin();
+    console.log('Dashboard IsAdmin: ', isAdmin);
     const [isInstructor, isInstructorLoading] = useInstructor();
+    console.log('Dashboard isInstructor: ', isInstructor);
 
     const studentsLinks = (
         <>
@@ -52,8 +53,8 @@ const Dashboard = () => {
                     <label htmlFor="my-drawer-2" className="drawer-overlay"></label>
                     <ul className="h-full p-4 menu w-80 bg-base-200 text-base-content">
                         {isAdmin || user?.role === 'admin' ? adminLinks : ''}
-                        {isInstructor || user?.role === 'instructor' && instructorLinks}
-                        {!isAdmin && !isInstructor || user?.role === 'admin' && studentsLinks}
+                        {(isInstructor || user?.role === 'instructor') && instructorLinks}
+                        {!isAdmin && !isInstructor && studentsLinks}
                     </ul>
                 </div>
             </div>

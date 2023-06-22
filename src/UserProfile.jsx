@@ -6,7 +6,7 @@ import { FaUser } from 'react-icons/fa';
 
 const UserProfile = () => {
     const { user } = useAuth();
-    console.log(user);
+    console.log('User from Profile Page: ',user);
 
     return (
         <div className='min-h-screen bg-gray-100'>
@@ -32,7 +32,8 @@ const UserProfile = () => {
                     <div className='p-6'>
                         <div className='mb-6'>
                             <label className='block mb-1 font-medium text-gray-700'>Username:</label>
-                            <p className='text-gray-800'>{user?.displayName}</p>
+                            <p className='text-gray-800'>{user?.displayName} </p>
+                            <p className='text-gray-800'>{user?.role} </p>
                         <div className='mb-6'>
                             <label className='block mb-1 font-medium text-gray-700'>Bio:</label>
                             <p className='text-gray-800'>{user?.bio}</p>

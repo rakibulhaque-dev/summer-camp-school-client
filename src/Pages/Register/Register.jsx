@@ -30,7 +30,7 @@ const Register = () => {
               address: data.address,
               phoneNumber: data.phoneNumber,
             }
-            fetch('https://language-school-server-ten.vercel.app/users', {
+            fetch('http://localhost:5000/users', {
               method: 'POST',
               headers: {
                 'content-type': 'application/json'

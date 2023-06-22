@@ -23,6 +23,7 @@ import InstructorRoute from "./InstructorRoute";
 import Layout from "../Layout/Layout";
 import Error from "../Error/Error";
 import UserProfile from "../UserProfile";
+import Payment from "../Dashboard/Payment/Payment";
 
 
 const router = createBrowserRouter([
@@ -68,6 +69,14 @@ const router = createBrowserRouter([
         path: '/dashboard',
         element: <PrivateRoute><Dashboard></Dashboard></PrivateRoute>,
         children: [
+            {
+                path: '/dashboard/',
+                element: <p className="text-3xl font-bold text-purple-600">Welcome back to Dashboard</p>
+            },
+            {
+                path: '/dashboard/payment',
+                element: <Payment></Payment>
+            },
             {
                 path: '/dashboard/myclass',
                 element: <MySelectedClasses></MySelectedClasses>

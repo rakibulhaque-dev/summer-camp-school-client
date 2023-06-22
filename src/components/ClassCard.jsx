@@ -1,51 +1,48 @@
 import React, { useEffect } from 'react';
 import useCartItems from '../hooks/useCartItems';
-import Swal from 'sweetalert2';
 import { useLocation, useNavigate } from 'react-router-dom';
 import useAuth from '../hooks/useAuth';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
-import '../../src/index.css'
+import '../../src/index.css';
 import { FaCartPlus, FaEye } from 'react-icons/fa';
-import { toast } from 'react-toastify';
+import useAxiosSecure from '../hooks/useAxiosSecure';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+
 
 const ClassCard = ({ singleClass }) => {
     const { user } = useAuth();
+    const axiosSecure = useAxiosSecure();
+
     const { availableSeats, otherClasses, subjectPic, totalStudents, _id, subjectName, courseFee, instructorName } = singleClass;
     const [cartItems, isLoading, refetch] = useCartItems();
+
     const navigate = useNavigate();
     const location = useLocation();
 
-    const handleSelect = () => {
-        if (user) {
-            if (user.role === 'admin' || user.role === 'instructor') {
-                return; // Disable the select button and prevent the fetch request for admin and instructor
-            }
+    const handleSelect = ({ singleClass }) => {
+        if (user && (user.role === 'admin' || user.role === 'instructor')) {
+            return; // Disable the select button for admin and instructor users
+        }
 
-            // Rest of the code for regular users
+        if (user) {
             const cartItem = { subjectId: _id, courseFee, instructorName, subjectName, subjectPic, email: user.email };
-            fetch('https://language-school-server-ten.vercel.app/cartitems', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(cartItem)
-            })
-                .then(res => res.json())
-                .then(data => {
-                    if (data.insertedId) {
+            console.log('Selected: ', cartItem)
+
+            axiosSecure.post(`/cartitems/${user?.email}`, cartItem)
+                .then(response => {
+                    if (response.data.insertedId) {
                         refetch();
-                        Swal.fire({
-                            position: 'top-end',
-                            icon: 'success',
-                            title: 'Selected your subject successfully!',
-                            showConfirmButton: false,
-                            timer: 1500
-                        });
+                        toast('Your class have been added!')
                     }
+                })
+                .catch(error => {
+                    console.log(error.message)
                 });
         } else {
-            toast('Youre not a student!', {
+            toast('You are not a student!', {
                 position: "top-center",
                 autoClose: 5000,
                 hideProgressBar: false,
@@ -58,18 +55,17 @@ const ClassCard = ({ singleClass }) => {
         }
     };
 
-
     useEffect(() => {
         AOS.init();
-    }, [])
+    }, []);
 
     const isButtonDisabled = user && (user.role === 'admin' || user.role === 'instructor');
 
     return (
-
-
-
         <>
+            <div>
+            <ToastContainer/>
+            </div>
             <div className='items-center justify-center gap-4 mb-6 text-center border rounded-md shadow-lg card kanit-font' data-aos="flip-left"
                 data-aos-easing="ease-out-cubic"
                 data-aos-duration="2000">

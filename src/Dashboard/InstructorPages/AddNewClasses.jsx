@@ -2,16 +2,39 @@ import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import { useForm } from 'react-hook-form';
 import useAxiosSecure from '../../hooks/useAxiosSecure';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const AddNewClasses = () => {
     const { register, handleSubmit, formState: { errors } } = useForm();
-    const [axiosSecure] = useAxiosSecure();
+    const axiosSecure = useAxiosSecure();
 
     const onSubmit = (data) => {
-        axiosSecure.post('/classes', data)
+        const newClass = {
+            availableSeats: data.availableSeats,
+            courseFee: data.courseFee,
+            email: data.email,
+            instructorName: data.instructorName,
+            subjectName: data.subjectName,
+            subjectPic: data.subjectPic,
+            status: 'pending'
+        }
+        console.log('Form Data: ', newClass)
+        axiosSecure.post('/classes', newClass)
             .then((response) => {
                 // Handle successful submission
-                console.log(response.data);
+                if (response.data.insertedId) {
+                    toast('Your class is pending!', {
+                        position: "top-right",
+                        autoClose: 5000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                        theme: "light",
+                    });
+                }
             })
             .catch((error) => {
                 // Handle error
@@ -24,6 +47,20 @@ const AddNewClasses = () => {
             <Helmet>
                 <title>Add New Class | LangSchool</title>
             </Helmet>
+            <ToastContainer
+                position="top-right"
+                autoClose={5000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+                theme="light"
+            />
+            {/* Same as */}
+            <ToastContainer />
 
             <form onSubmit={handleSubmit(onSubmit)} className="card-body">
                 <span className='p-3 mb-8 text-3xl font-bold text-center text-black border shadow-md'>Request to Add a class</span>

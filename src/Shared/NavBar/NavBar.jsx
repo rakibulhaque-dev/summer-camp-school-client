@@ -5,12 +5,13 @@ import useAuth from '../../hooks/useAuth';
 import { FaBookReader, FaDashcube, FaHome, FaShoppingBag, FaSun, FaUser, FaUserAlt, FaUserShield } from 'react-icons/fa';
 import useCartItems from '../../hooks/useCartItems';
 import '../../../src/index.css';
-// 4644467591
 
 const NavBar = ({ toggleMode, isDarkMode }) => {
-    const { user, logOut } = useAuth();
+    const { user, logOut , updateUserFromMongo} = useAuth();
     const [cartItems] = useCartItems();
 
+    // const updatedUser = updateUserFromMongo()
+    // console.log('User from nav', updatedUser)
 
     // console.log(user)
     const handleLogOut = () => {

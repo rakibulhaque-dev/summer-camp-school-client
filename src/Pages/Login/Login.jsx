@@ -1,16 +1,16 @@
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import useAuth from '../../hooks/useAuth';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
 import loginBanner from '../../../src/assets/banner/signUpImg.png';
 import SocialLogin from '../../Shared/SocialLogin/SocialLogin';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 
 
 const Login = () => {
     const { signIn, setUser } = useAuth();
     const location = useLocation();
-    const navigate = useNavigate();
     const from = location.state?.from?.pathname || '/';
+    const navigate = useNavigate();
 
 
     const handleLogin = (event) => {
@@ -23,7 +23,24 @@ const Login = () => {
             .then(result => {
                 console.log(result.user)
                 setUser(result.user)
-                navigate(from, { replace: true })
+                const loggedUser = { email: result.user.email }
+                
+                fetch('http://localhost:5000/jwt',{
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(loggedUser)
+                })
+                .then(res=>res.json())
+                .then(data=>{
+                    console.log('Token from Login Page: ',data.token)
+                    localStorage.setItem('access-token', data.token)
+                    navigate(from, {replace:true})
+                })
+                
+
+
             })
             .catch(error => console.log(error))
     }

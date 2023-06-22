@@ -8,7 +8,7 @@ import '../../../src/index.css'
 
 const MyClasses = () => {
     const [classes, loading, refetch] = useClasses();
-    console.log(classes)
+    console.log('All Classes', classes)
 
 
     return (
@@ -38,7 +38,7 @@ const MyClasses = () => {
                 </div>
 
             </div>
-            <div className='grid gap-4 mb-12 md:grid-cols-3 lg:grid-cols-3 mt-11'>
+            <div className='grid gap-2 mb-12 md:grid-cols-3 lg:grid-cols-3 mt-11'>
                 {
                     classes.map(singleClass => <ClassCard
                         key={singleClass._id}

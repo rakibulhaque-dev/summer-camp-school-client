@@ -5,7 +5,7 @@ import { FaPiedPiperAlt } from 'react-icons/fa';
 
 const PopulerClasses = () => {
     const [classes, loading, refecth] = useClasses();
-    const popularClasses = classes.filter((singleClass) => singleClass.totalStudents > 40);
+    const popularClasses = classes?.filter(singleClass => singleClass.totalStudents > 40);
 
     return (
         <div className='container mx-auto'>
@@ -18,7 +18,7 @@ const PopulerClasses = () => {
             </div>
 
             <div className='grid grid-cols-2 gap-y-4 gap-x-4 md:grid-cols-3'>
-                {popularClasses.map((singleClass) => <ClassCard
+                {popularClasses?.map((singleClass) => <ClassCard
                     key={singleClass._id}
                     singleClass={singleClass}
                 />)}

@@ -3,14 +3,13 @@ import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import useAuth from './useAuth';
 
-
 const useAxiosSecure = () => {
-    const { logOut } = useAuth(); 
-    const navigate = useNavigate(); 
-
-    const axiosSecure = axios.create({
-      baseURL: 'https://language-school-server-ten.vercel.app', 
-    });
+  const { logOut } = useAuth();
+  const navigate = useNavigate();
+  const token = localStorage.getItem('access-token');
+  const axiosSecure = axios.create({
+    baseURL: 'http://localhost:5000',
+  });
 
   useEffect(() => {
     axiosSecure.interceptors.request.use((config) => {
@@ -31,9 +30,9 @@ const useAxiosSecure = () => {
         return Promise.reject(error);
       }
     );
-  }, [logOut, navigate]);
+  }, [axiosSecure, logOut, navigate]);
 
-  return [axiosSecure];
+  return axiosSecure;
 };
 
 export default useAxiosSecure;

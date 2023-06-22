@@ -2,11 +2,12 @@ import React from 'react';
 import { useQuery } from '@tanstack/react-query';
 
 const useAllInstructors = () => {
+
     const { data: instructors = [], isLoading: loading, error, refetch } = useQuery({
         queryKey: ['instructors'],
         queryFn: async () => {
             try {
-                const res = await fetch('https://language-school-server-ten.vercel.app/instructors');
+                const res = await fetch('http://localhost:5000/instructors');
 
                 if (!res.ok) {
                     throw new Error('Failed to fetch instructors');

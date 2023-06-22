@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import { GoogleAuthProvider, createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from "firebase/auth";
-import app from '../firebase/firebase.config';
 import { createContext } from 'react';
 import axios from 'axios';
+import { GoogleAuthProvider, createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from "firebase/auth";
+import app from '../firebase/firebase.config';
 
-export const AuthContext = createContext();
 const auth = getAuth(app);
+export const AuthContext = createContext();
 
 const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null);
@@ -39,14 +39,14 @@ const AuthProvider = ({ children }) => {
         });
     }
 
-
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, currentUser => {
+            // console.log('Current user: ', currentUser)
             setUser(currentUser);
             setLoading(false);
 
             if (currentUser) {
-                axios.post('https://language-school-server-ten.vercel.app/jwt', { email: currentUser.email })
+                axios.post('http://localhost:5000/jwt', { email: currentUser.email })
                     .then(data => {
                         localStorage.setItem('access-token', data.data.token)
                         setLoading(false);
@@ -55,13 +55,16 @@ const AuthProvider = ({ children }) => {
             else {
                 localStorage.removeItem('access-token')
             }
-
-
         });
         return () => {
             return unsubscribe();
         }
     }, [])
+
+
+
+
+
 
     const authInfo = {
         user,
